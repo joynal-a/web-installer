@@ -24,10 +24,10 @@ class AppServiceProvider extends ServiceProvider
 
     public function boot()
     {
-        $this->loadViewsFrom(__DIR__.'/../resource/views', 'web-installer.resource');
+        $this->loadViewsFrom(__DIR__.'/../resources/views', 'web-installer/resources');
 
         $this->publishes([
-            __DIR__.'/../resource/views' => resource_path('views/vendor/web-installer'),
+            __DIR__.'/../resources/views' => resource_path('views/vendor/web-installer'),
         ], 'web-installer');
     }
 
