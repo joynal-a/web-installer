@@ -3,7 +3,6 @@
 namespace Abedin\WebInstaller\Controllers;
 
 use Exception;
-use Illuminate\Routing\Controller;
 
 class WelcomeController extends Controller
 {
@@ -14,6 +13,10 @@ class WelcomeController extends Controller
      */
     public function welcome()
     {
-        return view('vendor.installer.index');
+        try{
+            return view('vendor.installer.index');
+        }catch(Exception $e){
+            return view('index');
+        }
     }
 }
