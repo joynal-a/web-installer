@@ -13,10 +13,6 @@ class WelcomeController extends Controller
      */
     public function welcome()
     {
-        try{
-            return view('vendor.installer.index');
-        }catch(Exception $e){
-            return view('vendor.joynala.web-installer.view.index');
-        }
+        return view('joynala.web-installer::index');
     }
 }
