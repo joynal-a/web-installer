@@ -1,6 +1,6 @@
 <?php
 
-namespace Abedin\Providers;
+namespace Abedin\AppServiceProvider\Providers;
 
 use Illuminate\Support\ServiceProvider;
 
