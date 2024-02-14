@@ -6,13 +6,18 @@ use Illuminate\Support\ServiceProvider;
 
 class AppServiceProvider extends ServiceProvider
 {
-    /**
-     * Indicates if loading of the provider is deferred.
-     *
-     * @var bool
-     */
-    protected $defer = false;
 
+     /**
+     * Ragister package config path name here.
+     * @param string
+     */
+    private const CONFIG_FILE = __DIR__ . '/../config/installer.php';
+    
+    /**
+     * Ragister package path name here.
+     * @param string
+     */
+    private const PATH_VIEWS = __DIR__ . '../resources/views/';
 
     /**
      * Register any application services.
@@ -24,7 +29,7 @@ class AppServiceProvider extends ServiceProvider
 
     public function boot()
     {
-        $this->loadViewsFrom(__DIR__.'/../resources/views', 'web-installer');
+        $this->loadViewsFrom(self::PATH_VIEWS, 'joynala.web-installer');
 
         // $this->publishes([
         //     __DIR__.'/../resources/views' => resource_path('views/vendor/web-installer'),
@@ -33,17 +38,17 @@ class AppServiceProvider extends ServiceProvider
 
     protected function publishFiles()
     {
-        $this->publishes([
-            __DIR__.'/../../config/installer.php' => base_path('config/installer.php'),
-        ], 'web-installer');
+        // $this->publishes([
+        //     __DIR__.'/../../config/installer.php' => base_path('config/installer.php'),
+        // ], 'web-installer');
 
         // $this->publishes([
         //     __DIR__.'/../assets' => public_path('installer'),
         // ], 'web-installer');
 
-        $this->publishes([
-            __DIR__.'/../../resources/views' => base_path('resources/views/vendor/installer'),
-        ], 'web-installer');
+        // $this->publishes([
+        //     __DIR__.'/../../resources/views' => base_path('resources/views/vendor/installer'),
+        // ], 'web-installer');
     }
 
 }
