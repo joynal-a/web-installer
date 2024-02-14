@@ -26,7 +26,7 @@
     "extra": {
         "laravel": {
             "providers": [
-                "Abedin\\√\\Providers\\AppServiceProvider"
+                "Abedin\\WebInstaller\\Providers\\AppServiceProvider"
             ]
         }
     }
