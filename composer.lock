@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "0c9f790d1dcef0ff9631bdc107f9880b",
+    "content-hash": "db1d73b2d8102de81a3d7b3221701b8e",
     "packages": [
         {
             "name": "carbonphp/carbon-doctrine-types",
@@ -331,12 +331,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/illuminate/bus.git",
-                "reference": "a183e52039cc4f54d712ea8639d99544fcd0d593"
+                "reference": "1996308375daa8ed4139fc3db0473e991a713dcc"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/illuminate/bus/zipball/a183e52039cc4f54d712ea8639d99544fcd0d593",
-                "reference": "a183e52039cc4f54d712ea8639d99544fcd0d593",
+                "url": "https://api.github.com/repos/illuminate/bus/zipball/1996308375daa8ed4139fc3db0473e991a713dcc",
+                "reference": "1996308375daa8ed4139fc3db0473e991a713dcc",
                 "shasum": ""
             },
             "require": {
@@ -376,7 +376,7 @@
                 "issues": "https://github.com/laravel/framework/issues",
                 "source": "https://github.com/laravel/framework"
             },
-            "time": "2024-01-11T20:33:23+00:00"
+            "time": "2024-02-13T22:52:00+00:00"
         },
         {
             "name": "illuminate/collections",
@@ -384,12 +384,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/illuminate/collections.git",
-                "reference": "5cedaba39e331cffd73a01cf27ea83229fa11fba"
+                "reference": "04c24117515ab9b701e4b28506d3f3c15d14bd5f"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/illuminate/collections/zipball/5cedaba39e331cffd73a01cf27ea83229fa11fba",
-                "reference": "5cedaba39e331cffd73a01cf27ea83229fa11fba",
+                "url": "https://api.github.com/repos/illuminate/collections/zipball/04c24117515ab9b701e4b28506d3f3c15d14bd5f",
+                "reference": "04c24117515ab9b701e4b28506d3f3c15d14bd5f",
                 "shasum": ""
             },
             "require": {
@@ -431,7 +431,7 @@
                 "issues": "https://github.com/laravel/framework/issues",
                 "source": "https://github.com/laravel/framework"
             },
-            "time": "2024-02-09T15:56:19+00:00"
+            "time": "2024-02-13T21:55:58+00:00"
         },
         {
             "name": "illuminate/conditionable",
@@ -3053,12 +3053,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/process.git",
-                "reference": "d4fd4a807bb4697cc43b1dec7d124f876cfc52f3"
+                "reference": "8bda0beb7fa8b024ef5c64b33ecbea7361476149"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/process/zipball/d4fd4a807bb4697cc43b1dec7d124f876cfc52f3",
-                "reference": "d4fd4a807bb4697cc43b1dec7d124f876cfc52f3",
+                "url": "https://api.github.com/repos/symfony/process/zipball/8bda0beb7fa8b024ef5c64b33ecbea7361476149",
+                "reference": "8bda0beb7fa8b024ef5c64b33ecbea7361476149",
                 "shasum": ""
             },
             "require": {
@@ -3106,7 +3106,7 @@
                     "type": "tidelift"
                 }
             ],
-            "time": "2024-02-12T11:14:32+00:00"
+            "time": "2024-02-13T07:48:02+00:00"
         },
         {
             "name": "symfony/routing",
@@ -4262,12 +4262,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/sebastianbergmann/phpunit.git",
-                "reference": "49429bf6e3aa23b5e7521feeb92c31197efce444"
+                "reference": "828c5ab97f96e1045250b57f935d70aa7277da07"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/sebastianbergmann/phpunit/zipball/49429bf6e3aa23b5e7521feeb92c31197efce444",
-                "reference": "49429bf6e3aa23b5e7521feeb92c31197efce444",
+                "url": "https://api.github.com/repos/sebastianbergmann/phpunit/zipball/828c5ab97f96e1045250b57f935d70aa7277da07",
+                "reference": "828c5ab97f96e1045250b57f935d70aa7277da07",
                 "shasum": ""
             },
             "require": {
@@ -4355,7 +4355,7 @@
                     "type": "tidelift"
                 }
             ],
-            "time": "2024-02-08T16:46:03+00:00"
+            "time": "2024-02-14T07:01:37+00:00"
         },
         {
             "name": "sebastian/cli-parser",
@@ -5333,10 +5333,7 @@
     ],
     "aliases": [],
     "minimum-stability": "dev",
-    "stability-flags": {
-        "illuminate/support": 20,
-        "illuminate/routing": 20
-    },
+    "stability-flags": [],
     "prefer-stable": false,
     "prefer-lowest": false,
     "platform": {
