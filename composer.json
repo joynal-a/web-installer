@@ -1,5 +1,5 @@
 {
-    "name": "joynal.a/web-installer",
+    "name": "joynala/web-installer",
     "description": "This is a laravel web installer and builder",
     "license": "MIT",
     "minimum-stability": "dev",

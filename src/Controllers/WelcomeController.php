@@ -16,7 +16,7 @@ class WelcomeController extends Controller
         try{
             return view('vendor.installer.index');
         }catch(Exception $e){
-            return view('index');
+            return view('vendor.joynala.web-installer.view.index');
         }
     }
 }
