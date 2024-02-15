@@ -13,6 +13,6 @@ class WelcomeController extends Controller
      */
     public function welcome()
     {
-        return view('joynala.web-installer.index');
+        return view('joynala.web-installer::index');
     }
 }
