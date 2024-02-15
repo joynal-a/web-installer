@@ -11,13 +11,13 @@ class AppServiceProvider extends ServiceProvider
      * Ragister package config path name here.
      * @param string
      */
-    private const CONFIG_FILE = __DIR__ . '/../config/installer.php';
+    private const CONFIG_FILE = __DIR__ . '/../../config/installer.php';
     
     /**
      * Ragister package path name here.
      * @param string
      */
-    private const PATH_VIEWS = __DIR__ . '/../resources/views/';
+    private const PATH_VIEWS = __DIR__ . '/../../resources/views';
 
     /**
      * Register any application services.
