@@ -17,7 +17,7 @@ class AppServiceProvider extends ServiceProvider
      * Ragister package path name here.
      * @param string
      */
-    private const PATH_VIEWS = __DIR__ . '../resources/views/';
+    private const PATH_VIEWS = __DIR__ . '/../resources/views/';
 
     /**
      * Register any application services.
@@ -31,9 +31,9 @@ class AppServiceProvider extends ServiceProvider
     {
         $this->loadViewsFrom(self::PATH_VIEWS, 'joynala.web-installer');
 
-        // $this->publishes([
-        //     __DIR__.'/../resources/views' => resource_path('views/vendor/web-installer'),
-        // ], 'web-installer');
+        $this->publishes([
+            self::PATH_VIEWS => resource_path('views/vendor/web-installer'),
+        ], 'web-installer');
     }
 
     protected function publishFiles()
