@@ -8,11 +8,14 @@ class WelcomeController extends Controller
 {
      /**
      * Display the installer welcome page.
-     *
-     * @return \Illuminate\Http\Response
      */
     public function welcome()
     {
-        return view('joynala.web-installer::index');
+        // check vendor is published or not
+        $isPublish = is_dir(base_path('resources/views/vendor/web-installer'));
+        return match($isPublish){
+            true => view('vendor.web-installer.index'),
+            default => view('joynala.web-installer::index')
+        };
     }
 }

@@ -34,21 +34,11 @@ class AppServiceProvider extends ServiceProvider
         $this->publishes([
             self::PATH_VIEWS => resource_path('views/vendor/web-installer'),
         ], 'web-installer');
+
+        $this->publishes([
+            self::CONFIG_FILE => base_path('config/installer.php'),
+        ], 'web-installer-config');
     }
 
-    protected function publishFiles()
-    {
-        // $this->publishes([
-        //     __DIR__.'/../../config/installer.php' => base_path('config/installer.php'),
-        // ], 'web-installer');
-
-        // $this->publishes([
-        //     __DIR__.'/../assets' => public_path('installer'),
-        // ], 'web-installer');
-
-        // $this->publishes([
-        //     __DIR__.'/../../resources/views' => base_path('resources/views/vendor/installer'),
-        // ], 'web-installer');
-    }
 
 }
