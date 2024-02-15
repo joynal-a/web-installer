@@ -19,6 +19,8 @@ class AppServiceProvider extends ServiceProvider
      */
     private const PATH_VIEWS = __DIR__ . '/../../resources/views';
 
+    private const PATH_ASSETS = __DIR__ . '/../../resources/assets';
+
     /**
      * Register any application services.
      */
@@ -33,7 +35,9 @@ class AppServiceProvider extends ServiceProvider
 
         $this->publishes([
             self::PATH_VIEWS => resource_path('views/vendor/web-installer'),
+            self::PATH_ASSETS => public_path('vendor/web-installer'),
         ], 'web-installer');
+        
 
         $this->publishes([
             self::CONFIG_FILE => base_path('config/installer.php'),
