@@ -11,7 +11,7 @@ class WelcomeController extends Controller
      */
     public function welcome()
     {
-        return config('install.environment');
+        return config('installer.environment');
         // check vendor is published or not
         $isPublish = is_dir(base_path('resources/views/vendor/web-installer'));
         return match($isPublish){
