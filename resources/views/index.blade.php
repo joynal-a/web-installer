@@ -184,7 +184,7 @@
         }
 
         .main {
-            background: url("{{ vendor('web-installer/assets/images/background.jpg') }}");
+            background: url("{{ asset('vendor/web-installer/images/background.jpg') }}");
             width: 100%;
             height: 100vh;
             background-repeat: no-repeat;
