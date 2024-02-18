@@ -13,8 +13,8 @@
     <main class="main">
         <div class="opachity">
             <div class="container-fluid">
-                <div class="row">
-                    <div class="col-6 col-md-4 m-auto m-auto d-flex align-items-center" style="height: 100vh;">
+                <div class="row px-5">
+                    <div class="col-6 col-md-4 ms-auto d-flex align-items-center me-5" style="height: 100vh;">
                         <div class="card w-100 pt-3" style="overflow: hidden;border-bottom: none;">
                             <h2 class="text-center mt-3">Thanks For Installing</h2>
                             <p class="fs-7 text-center">
@@ -175,6 +175,7 @@
                 </div>
             </div>
         </div>
+        {{-- <img src="https://i.ibb.co/SPrLMYw/background.png" alt=""> --}}
     </main>
 
     <style>
@@ -184,16 +185,16 @@
         }
 
         .main {
-            background: url("{{ asset('vendor/web-installer/images/background.png') }}");
+            background: url("https://i.ibb.co/SPrLMYw/background.png");
             width: 100%;
             height: 100vh;
             background-repeat: no-repeat;
             background-size: cover;
-
+            background-position: bottom;
         }
 
         .opachity {
-            background: #0000006b;
+            background: #00000030;
             width: 100%;
             height: 100%;
         }
