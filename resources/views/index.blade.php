@@ -7,8 +7,7 @@
             <h2 class="text-center mt-3">Thanks For Installing</h2>
             @if ($hasConfigFile)
             <p class="fs-7 text-center">
-                <strong class="text-danger">You will need to know the following items before
-                    proceeding.</strong>
+                <strong class="text-danger">You will need to know the following items before proceeding.</strong>
             </p>
 
             <div class="w-80 m-auto">
