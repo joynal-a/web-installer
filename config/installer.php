@@ -7,6 +7,7 @@ return [
     'redirect_route' => "welcome",
 
     'with_purchase_code' => true,
+    'market_name' => 'Codecanyon',
 
     /*
     |--------------------------------------------------------------------------
