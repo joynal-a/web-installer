@@ -12,6 +12,6 @@ class CheckHasConfigMiddleware
         if($hasConfigFile){
             return $next($request);
         }
-        return back();
+        return to_route('installer.welcome.index');
     }
 }
