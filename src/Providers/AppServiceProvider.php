@@ -2,8 +2,9 @@
 
 namespace Abedin\WebInstaller\Providers;
 
-use Abedin\WebInstaller\Middleware\IsPublisConfigMiddleware;
+use Abedin\WebInstaller\Middleware\CheckHasConfigMiddleware;
 use Illuminate\Support\ServiceProvider;
+use Illuminate\Routing\Router;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -30,9 +31,16 @@ class AppServiceProvider extends ServiceProvider
         $this->loadRoutesFrom(__DIR__.'/../../routes/web.php');
     }
 
+    /**
+     * Bootstrap the application events.
+     *
+     * @param  \Illuminate\Routing\Router  $router
+     */
     public function boot(Router $router)
     {
-        $this->app['router']->aliasMiddleware('config_check', IsPublisConfigMiddleware::class);
+        $router->middlewareGroup('config_check', [CheckHasConfigMiddleware::class]);
+        
+        $this->app['router']->aliasMiddleware('config_check', CheckHasConfigMiddleware::class);
         $this->loadViewsFrom(self::PATH_VIEWS, 'joynala.web-installer');
 
         $this->publishes([
