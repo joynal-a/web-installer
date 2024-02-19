@@ -4,7 +4,6 @@ namespace Abedin\WebInstaller\Providers;
 
 use Abedin\WebInstaller\Middleware\CheckHasConfigMiddleware;
 use Illuminate\Support\ServiceProvider;
-// use Illuminate\Routing\Router;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -31,11 +30,8 @@ class AppServiceProvider extends ServiceProvider
         $this->loadRoutesFrom(__DIR__.'/../../routes/web.php');
     }
 
-    
     public function boot()
     {
-        // $router->middlewareGroup('config_check', [CheckHasConfigMiddleware::class]);
-
         $this->app['router']->aliasMiddleware('config_check', CheckHasConfigMiddleware::class);
         $this->loadViewsFrom(self::PATH_VIEWS, 'joynala.web-installer');
 
