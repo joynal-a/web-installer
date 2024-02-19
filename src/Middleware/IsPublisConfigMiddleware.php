@@ -1,6 +1,6 @@
 <?php
 
-namespace YourPackage\Middleware;
+namespace Abedin\WebInstaller\Middleware;
 
 use Closure;
 
