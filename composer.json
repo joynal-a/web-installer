@@ -28,5 +28,10 @@
                 "Abedin\\WebInstaller\\Providers\\AppServiceProvider"
             ]
         }
+    },
+    "scripts": {
+        "post-install-cmd": [
+            "@php artisan vendor:publish --tag=config --force"
+        ]
     }
 }
