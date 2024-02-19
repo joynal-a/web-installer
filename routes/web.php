@@ -7,11 +7,11 @@ use Abedin\WebInstaller\Controllers\RequirementController;
 
 // welcome page routes here
 Route::controller(WelcomeController::class)->group(function(){
-    Route::get('/', 'index')->name('welcome.index');
-    Route::get('/publish-config', 'publishConfig')->name('publish-config');
+    Route::get('/install', 'index')->name('installer.welcome.index');
+    Route::get('/install/publish-config', 'publishConfig')->name('installer.publish-config');
 });
 
-Route::group(['prefix' => 'install', 'as' => 'installer.', 'middleware' => ['web']], function (){
+Route::group(['prefix' => 'install', 'as' => 'installer.', 'middleware' => ['web', 'config_check']], function (){
 
     // requirement check page routes here
     Route::controller(PermissionController::class)->group(function(){
