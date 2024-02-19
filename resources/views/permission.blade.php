@@ -20,7 +20,7 @@
                         {{ config('installer.market_name') }} purchase code
                     </li>
                     @endif --}}
-                    
+
                     @foreach ($permissions['items'] as $permision)
                     <li class="list-group-item fs-7 fw-600 d-flex align-items-center" style="line-height: 18px; color: #666; gap: 7px;">
                         @if ($permision['isPermit'])
@@ -124,12 +124,16 @@
                 </div>
 
                 <div class="my-4 py-4 absolute-bottom-left right-0 d-flex justify-content-center">
-                    <a href="{{ route('installer.permission.index') }}" class="btn btn-install text-uppercase">
-                        Start Installation Process
+                    @isset($permissions['stop'])
+                    <a href="#" class="disabled btn btn-install text-uppercase">
+                        Next
                     </a>
+                    @else
+                    <a href="{{ route('installer.requerment.index') }}" class="btn btn-install text-uppercase">
+                        Next
+                    </a>
+                    @endisset
                 </div>
-
-
             </div>
 
             <div class="row">

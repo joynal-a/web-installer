@@ -3,6 +3,7 @@
 namespace Abedin\WebInstaller\Providers;
 
 use Illuminate\Support\ServiceProvider;
+use YourPackage\Middleware\IsPublisConfigMiddleware;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -26,6 +27,7 @@ class AppServiceProvider extends ServiceProvider
      */
     public function register(): void
     {
+        $this->app['router']->aliasMiddleware('config_check', IsPublisConfigMiddleware::class);
         $this->loadRoutesFrom(__DIR__.'/../../routes/web.php');
     }
 
