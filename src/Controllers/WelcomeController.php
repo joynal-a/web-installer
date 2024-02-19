@@ -2,7 +2,6 @@
 
 namespace Abedin\WebInstaller\Controllers;
 
-use Exception;
 use Illuminate\Support\Facades\Artisan;
 
 class WelcomeController extends Controller
@@ -10,7 +9,7 @@ class WelcomeController extends Controller
      /**
      * Display the installer welcome page.
      */
-    public function welcome()
+    public function index()
     {
         $hasConfigFile = is_file( base_path('config/installer.php'));
         // check vendor is published or not
