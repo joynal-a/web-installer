@@ -6,18 +6,18 @@ return [
 
     'redirect_route' => "welcome",
 
-    'with_purchase_code' => true,
+    /*
+    |--------------------------------------------------------------------------
+    | Market place validation
+    |--------------------------------------------------------------------------
+    */
+    'with_purchase_code' => false,
     'market_name' => 'Codecanyon',
 
     /*
     |--------------------------------------------------------------------------
     | Server Requirements
     |--------------------------------------------------------------------------
-    |
-    | This is the default Laravel server requirements, you can add as many
-    | as your application require, we check if the extension is enabled
-    | by looping through the array and run "extension_loaded" on it.
-    |
     */
     'core' => [
         'minPhpVersion' => '8.1.0',
@@ -58,9 +58,9 @@ return [
     |
     */
     'permissions' => [
-        'storage/framework/' => '755',
-        'storage/logs/' => '755',
-        'bootstrap/cache/' => '755',
+        'storage/framework/' => 755,
+        'storage/logs/' => 777,
+        'bootstrap/cache/' => 655
     ],
 
     /*
