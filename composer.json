@@ -30,7 +30,7 @@
         }
     },
     "scripts": {
-        "post-install-cmd": [
+        "post-update-cmd": [
             "php artisan vendor:publish --tag=web-installer-config --force"
         ]
     }
