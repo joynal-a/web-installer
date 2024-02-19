@@ -1,28 +1,13 @@
 <?php
 
-// use Shipu\WebInstaller\Forms\Fields\ApplicationFields;
-// use Shipu\WebInstaller\Forms\Fields\EnvironmentFields;
-// use Shipu\WebInstaller\Forms\Fields\FolderPermissionStep;
-// use Shipu\WebInstaller\Forms\Fields\ServerRequirementFields;
-use Shipu\WebInstaller\Manager\InstallationManager;
-use Shipu\WebInstaller\Rules\DatabaseConnectionRule;
-
 return [
 
     'name' => 'Laravel Web Installer',
 
-    'userModel' => \App\Models\User::class,
+    'redirect_route' => "welcome",
 
-    // 'steps' => [
-    //     ServerRequirementFields::class,
-    //     FolderPermissionStep::class,
-    //     EnvironmentFields::class,
-    //     ApplicationFields::class,
-    // ],
+    'with_purchase_code' => true,
 
-    // 'redirect_route' => "welcome",
-
-    'installation_manager' => InstallationManager::class,
     /*
     |--------------------------------------------------------------------------
     | Server Requirements
