@@ -11,7 +11,7 @@ Route::controller(WelcomeController::class)->group(function(){
     Route::get('/publish-config', 'publishConfig')->name('publish-config');
 });
 
-Route::middleware('config_check')->group(['prefix' => 'install', 'as' => 'installer.', 'middleware' => ['web']], function (){
+Route::group(['prefix' => 'install', 'as' => 'installer.', 'middleware' => ['web']], function (){
 
     // requirement check page routes here
     Route::controller(PermissionController::class)->group(function(){
