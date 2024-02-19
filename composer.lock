@@ -82,12 +82,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/doctrine/inflector.git",
-                "reference": "d718c589c01ce614e03ed0ab3be831e4201bfb79"
+                "reference": "f587d8c05c6e00f99cbfb32d565e4f6743c07ee4"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/doctrine/inflector/zipball/d718c589c01ce614e03ed0ab3be831e4201bfb79",
-                "reference": "d718c589c01ce614e03ed0ab3be831e4201bfb79",
+                "url": "https://api.github.com/repos/doctrine/inflector/zipball/f587d8c05c6e00f99cbfb32d565e4f6743c07ee4",
+                "reference": "f587d8c05c6e00f99cbfb32d565e4f6743c07ee4",
                 "shasum": ""
             },
             "require": {
@@ -165,7 +165,7 @@
                     "type": "tidelift"
                 }
             ],
-            "time": "2024-01-15T18:12:41+00:00"
+            "time": "2024-02-18T21:47:00+00:00"
         },
         {
             "name": "illuminate/bus",
@@ -707,12 +707,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/illuminate/support.git",
-                "reference": "adb9bec3838a1cbd51b928b822533bbc3e12d898"
+                "reference": "ef80b6c0d0faec648d0625f1bd2b604b61cba5e5"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/illuminate/support/zipball/adb9bec3838a1cbd51b928b822533bbc3e12d898",
-                "reference": "adb9bec3838a1cbd51b928b822533bbc3e12d898",
+                "url": "https://api.github.com/repos/illuminate/support/zipball/ef80b6c0d0faec648d0625f1bd2b604b61cba5e5",
+                "reference": "ef80b6c0d0faec648d0625f1bd2b604b61cba5e5",
                 "shasum": ""
             },
             "require": {
@@ -770,7 +770,7 @@
                 "issues": "https://github.com/laravel/framework/issues",
                 "source": "https://github.com/laravel/framework"
             },
-            "time": "2024-02-13T21:52:37+00:00"
+            "time": "2024-02-16T10:04:27+00:00"
         },
         {
             "name": "illuminate/view",
@@ -832,12 +832,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/laravel/prompts.git",
-                "reference": "e4a558f617140ff300ceeca77d4006c51b543692"
+                "reference": "ca6a982aea2aa6822484bdb77c70ef65c60419e7"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/laravel/prompts/zipball/e4a558f617140ff300ceeca77d4006c51b543692",
-                "reference": "e4a558f617140ff300ceeca77d4006c51b543692",
+                "url": "https://api.github.com/repos/laravel/prompts/zipball/ca6a982aea2aa6822484bdb77c70ef65c60419e7",
+                "reference": "ca6a982aea2aa6822484bdb77c70ef65c60419e7",
                 "shasum": ""
             },
             "require": {
@@ -882,7 +882,7 @@
                 "issues": "https://github.com/laravel/prompts/issues",
                 "source": "https://github.com/laravel/prompts/tree/main"
             },
-            "time": "2024-01-26T15:35:38+00:00"
+            "time": "2024-02-19T11:27:20+00:00"
         },
         {
             "name": "nesbot/carbon",
@@ -2910,12 +2910,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/sebastianbergmann/phpunit.git",
-                "reference": "828c5ab97f96e1045250b57f935d70aa7277da07"
+                "reference": "2783e11fe23ae3e5d68276c56b6461be989afbb7"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/sebastianbergmann/phpunit/zipball/828c5ab97f96e1045250b57f935d70aa7277da07",
-                "reference": "828c5ab97f96e1045250b57f935d70aa7277da07",
+                "url": "https://api.github.com/repos/sebastianbergmann/phpunit/zipball/2783e11fe23ae3e5d68276c56b6461be989afbb7",
+                "reference": "2783e11fe23ae3e5d68276c56b6461be989afbb7",
                 "shasum": ""
             },
             "require": {
@@ -3003,7 +3003,7 @@
                     "type": "tidelift"
                 }
             ],
-            "time": "2024-02-14T07:01:37+00:00"
+            "time": "2024-02-19T13:53:14+00:00"
         },
         {
             "name": "sebastian/cli-parser",
