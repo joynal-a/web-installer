@@ -27,6 +27,6 @@ Route::group(['prefix' => 'install', 'as' => 'installer.', 'middleware' => ['web
     // requirement check page routes here
     Route::controller(InstallationController::class)->group(function(){
         Route::get('/configure', 'index')->name('configure.index');
-        Route::post('/app-configure', 'appConfigure')->name('app-configure.store');
+        Route::post('/app-configure/{index}', 'appConfigure')->name('app-configure.store');
     });
 });
