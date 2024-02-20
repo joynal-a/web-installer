@@ -16,12 +16,13 @@
             <div class="w-80 m-auto">
 
                 @foreach ($environmentFields as $key => $types)
-                    <form id="form_{{ ($key + 1) }}" style="display: {{ $key > 0 ? 'none':null }}">
+                    <form method="post" id="form_{{ ($key + 1) }}" style="display: {{ $key > 0 ? 'none':null }}">
+                        @csrf
                         @foreach ($types as $name => $fields)
                             @isset($fields['option'])
                                 @if ($fields['type'] == 'select')
                                     <div class="mb-3">
-                                        <label for="">{{ $fields['label'] }}</label>
+                                        <label for="">{{ $fields['label'] }}@if (substr($fields['rule'], 0, 8) === 'required')<strong class="text-danger">*</strong>@endif</label>
                                         <select name="{{ $name }}" class="form-control">
                                             <option value="">{{ $fields['placeholder'] }}</option>
                                             @foreach ($fields['option'] as $option)
@@ -31,18 +32,18 @@
                                     </div>
                                 @else
                                 <div class="mb-3">
-                                    <label for="">{{ $fields['label'] }}</label> <br>
+                                    <label for="">{{ $fields['label'] }}@if (substr($fields['rule'], 0, 8) === 'required')<strong class="text-danger">*</strong>@endif</label> <br>
                                     @foreach ($fields['option'] as $k => $option)
                                     <label for="radio_{{ $option }}" class="{{ $k > 0 ? 'ms-4':'' }}">
-                                        {{ $option ? 'True':'False' }} <input type="radio" id="radio_{{ $option }}" name="{{ $name }}" value="{{ $option }}" class="form-control-radio">
+                                        {{ $option ? 'True':'False' }} <input type="radio" id="radio_{{ $option }}" {{ !$option ? 'checked':'' }} name="{{ $name }}" value="{{ $option ? 'true':'false' }}" class="form-control-radio">
                                     </label>
                                     @endforeach
                                 </div>
                                 @endif
                             @else
                                 <div class="mb-3">
-                                    <label for="">{{ $fields['label'] }}</label>
-                                    <input type="{{ $fields['type'] }}" placeholder="{{ $fields['placeholder'] }}" class="form-control">
+                                    <label for="">{{ $fields['label'] }}@if (substr($fields['rule'], 0, 8) === 'required')<strong class="text-danger">*</strong>@endif</label>
+                                    <input type="{{ $fields['type'] }}" name="{{ $name }}" placeholder="{{ $fields['placeholder'] }}" class="form-control">
                                 </div>
                             @endisset
                         @endforeach
@@ -127,7 +128,7 @@
                         </div>
 
                         <div class="my-4 py-4 absolute-bottom-left right-0 d-flex justify-content-center">
-                            <button onclick="submitData('form_{{ ($key + 1) }}', 'form_{{ ($key + 2) }}')" type="button" class="btn btn-install text-uppercase">Next</button>
+                            <button onclick="submitData('form_{{ ($key + 1) }}', 'form_{{ ($key + 2) }}', '{{ route('installer.app-configure.store', $key) }}')" type="button" class="btn btn-install text-uppercase">Next</button>
                         </div>
                     </form>
                 @endforeach
@@ -146,23 +147,30 @@
 
 @push('scripts')
     <script>
-        function submitData(formId, nextId){
-            console.log(formId);
-            let form = document.getElementById(formId)
+        function submitData(formId, nextId, url){
+            let formData = $('#' + formId).serializeArray().reduce(function(obj, item) {
+                obj[item.name] = item.value;
+                return obj;
+            }, {});
+
+            let currentForm = document.getElementById(formId)
             let nextForm = document.getElementById(nextId)
-            // form.style.display = 'none'
-            // nextForm.style.display = 'block'
-            
+            let lastForm = "form_{{ count($environmentFields) }}"
+
             $.ajax({
-                url : '/District/' + DivisionID,
-                type : "GET",
+                url : url,
+                type : "POST",
                 dataType : "json",
+                data: formData,
                 success:function(data)
                 {
-                $('select[name="District"]').empty();
-                $.each(data, function(key,value){
-                    $('select[name="District"]').append('<option value="'+value.id+'">'+value.name+' ( '+value.bn_name+' ) '+'</option>');
-                });
+                    currentForm.style.display = 'none'
+                    nextForm.style.display = 'block'
+                    console.log(data);
+                },
+                error:function(response) {
+                    // Handle error response
+                    console.log('AJAX error:',response.responseJSON.errors);
                 }
             });
         }

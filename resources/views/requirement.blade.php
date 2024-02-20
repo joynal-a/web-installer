@@ -142,7 +142,7 @@
 
                 <div class="my-4 py-4 absolute-bottom-left right-0 d-flex justify-content-center">
                     @if ($phpSupportInfo['status'] && $extensions['next'])
-                    <a href="{{ route('installer.requerment.index') }}" class="btn btn-install text-uppercase">
+                    <a href="{{ route('installer.configure.index') }}" class="btn btn-install text-uppercase">
                         Next
                     </a>
                     @else

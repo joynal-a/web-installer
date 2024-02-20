@@ -3,6 +3,7 @@
 namespace Abedin\WebInstaller\Controllers;
 
 use Abedin\WebInstaller\Lib\Managers\InstallationManager;
+use Illuminate\Http\Request;
 
 class InstallationController extends Controller
 {
@@ -20,6 +21,22 @@ class InstallationController extends Controller
             true => view('vendor.web-installer.install', compact('environmentFields')),
             default => view('joynala.web-installer::install', compact('environmentFields'))
         };
+    }
+
+    public function appConfigure(Request $request, $index)
+    {
+        $formInfos = config('installer.environment_fields.' . $index);
+        $rules = [];
+        foreach($formInfos as $name => $formInfo){
+            $rules[$name] = $formInfo['rule'];
+        }
+
+        $request->validate($rules);
+
+        return response()->json([
+            'status' => 200,
+            'massage' => 'enverment setup is successfully.'
+        ]);
     }
 
 
