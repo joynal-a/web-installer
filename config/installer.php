@@ -16,43 +16,36 @@ return [
 
     /*
     |--------------------------------------------------------------------------
-    | Server Requirements
+    | minimum php version
     |--------------------------------------------------------------------------
     */
-    'core' => [
-        'minPhpVersion' => '8.1.0',
-    ],
+    'minPhpVersion' => '8.2.0',
 
     /*
     |--------------------------------------------------------------------------
     | Php and server Requirements
     |--------------------------------------------------------------------------
-    |
     | php extensions and apache modules requirements
-    |
     */
-    'requirements' => [
-        'php' => [
-            'mysqli',
-            'openssl',
-            'pdo',
-            'mbstring',
-            'JSON',
-            'cURL',
-            'fileinfo',
-            'gmp',
-            'xml',
-            'zip',
-            'sodium',
-            'bcMath'
-        ]
+    'php_extensions' => [
+        'mysqli',
+        'openssl',
+        'pdo',
+        'mbstring',
+        'JSON',
+        'cURL',
+        'fileinfo',
+        'gmp',
+        'xml',
+        'zip',
+        'sodium',
+        'bcMath'
     ],
 
     /*
     |--------------------------------------------------------------------------
     | Folders Permissions
     |--------------------------------------------------------------------------
-    |
     | This is the default Laravel folders permissions, if your application
     | requires more permissions just add them to the array list bellow.
     |
@@ -67,7 +60,6 @@ return [
     |--------------------------------------------------------------------------
     | Environment Form
     |--------------------------------------------------------------------------
-    |
     | environment form fields
     |
     */

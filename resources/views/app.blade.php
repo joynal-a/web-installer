@@ -65,6 +65,11 @@
             box-shadow: 0px 8px 40px rgb(255 88 0 / 30%);
             letter-spacing: 0.3px;
         }
+
+        .move-right{
+            position: absolute;
+            right: 10px
+        }
     </style>
 </head>
 
