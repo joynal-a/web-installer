@@ -1,5 +1,6 @@
 <?php
 
+use Abedin\WebInstaller\Controllers\InstallationController;
 use Abedin\WebInstaller\Controllers\PermissionController;
 use Abedin\WebInstaller\Controllers\WelcomeController;
 use Illuminate\Support\Facades\Route;
@@ -21,5 +22,11 @@ Route::group(['prefix' => 'install', 'as' => 'installer.', 'middleware' => ['web
     // requirement check page routes here
     Route::controller(RequirementController::class)->group(function(){
         Route::get('/check-requirments', 'index')->name('requerment.index');
+    });
+
+    // requirement check page routes here
+    Route::controller(InstallationController::class)->group(function(){
+        Route::get('/configure', 'index')->name('configure.index');
+        Route::post('/app-configure', 'appConfigure')->name('app-configure.store');
     });
 });

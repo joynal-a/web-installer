@@ -70,6 +70,17 @@
             position: absolute;
             right: 10px
         }
+        .loader{
+            position: absolute;
+            z-index: 999;
+            width: 100%;
+            height: 100%;
+            background: #d9d9d982;
+            top: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
     </style>
 </head>
 

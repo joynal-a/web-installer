@@ -39,7 +39,7 @@ return [
         'xml',
         'zip',
         'sodium',
-        'bcMath'
+        'bcMath',
     ],
 
     /*
@@ -63,40 +63,123 @@ return [
     | environment form fields
     |
     */
-    'environment'  => [
-        'form' => [
-            'app_name'              => 'required|string|max:50',
-            'environment'           => 'required|string|max:50',
-            'debug'                 => 'required|string',
-            'app_url'               => 'required|url',
-
-            'database_connection'   => 'required|string|max:50',
-            'database_hostname'     => 'required|string|max:50',
-            'database_port'         => 'required|numeric',
-            'database_name'         => 'required|string|max:50',
-            'database_username'     => 'required|string|max:50',
-            'database_password'     => 'nullable|string|max:50',
-
-            'mail_driver'           => 'required|string|max:50',
-            'mail_host'             => 'required|string|max:50',
-            'mail_port'             => 'required|string|max:50',
-            'mail_username'         => 'required|string|max:50',
-            'mail_password'         => 'required|string|max:50',
-            'mail_encryption'       => 'required|string|max:50',
-
-            'pusher_app_id'         => 'max:50',
-            'pusher_app_key'        => 'max:50',
-            'pusher_app_secret'     => 'max:50',
-        ],
+    'environment_fields' => [
+        [
+            'app_name' => [
+                'rule' => 'required|string|max:50',
+                'label' => 'App name',
+                'placeholder' => 'e.g: Web-installer',
+                'type' => 'text'
+            ],
+            'app_url' => [
+                'rule' => 'required|url',
+                'label' => 'App base url',
+                'placeholder' => 'e.g: http://example.com',
+                'type' => 'text'
+            ],
+            'environment' => [
+                'rule' => 'required|string|max:50',
+                'label' => 'App eneverment',
+                'placeholder' => 'Select app enverment',
+                'type' => 'select',
+                'option' => ['local', 'production', 'staging', 'development']
+            ],
+            'filesystem_disk' => [
+                'rule' => 'required|string',
+                'label' => 'App file system',
+                'placeholder' => 'Select a file system',
+                'type' => 'select',
+                'option' => ['local', 'public']
+            ],
+            'debug' => [
+                'rule' => 'required|string',
+                'label' => 'App debug:',
+                'placeholder' => 'Choose app debug mode',
+                'option' => [true, false],
+                'type' => 'radio'
+            ],
+        ],[
+            'database_connection' => [
+                'rule' => 'required|string|max:50',
+                'label' => 'Database Connection',
+                'placeholder' => 'Select Databese',
+                'type' => 'select',
+                'option' => ['mysql', 'sqlite', 'pgsql', 'sqlsrv']
+            ],
+            'database_hostname' => [
+                'rule' => 'required|string|max:50',
+                'label' => 'Database Host',
+                'type' => 'text',
+                'placeholder' => 'e.g: 127.0.0.1'
+            ],
+            'database_port' => [
+                'rule' => 'required|numeric',
+                'label' => 'Database Port',
+                'type' => 'number',
+                'placeholder' => 'e.g: 3306',
+            ],
+            'database_name' => [
+                'rule' => 'required|string|max:50',
+                'label' => 'Database Name',
+                'type' => 'text',
+                'placeholder' => 'e.g: web_installer'
+            ],
+            'database_username' => [
+                'rule' => 'required|string|max:50',
+                'label' => 'Database Username',
+                'type' => 'text',
+                'placeholder' => 'e.g: root'
+            ],
+            'database_password' => [
+                'rule' => 'required|string|max:50',
+                'label' => 'Database Password',
+                'type' => 'password',
+                'placeholder' => 'e.g: **********'
+            ],
+        ],[
+            'mail_driver' => [
+                'rule' => 'required|string|max:50',
+                'label' => 'Mail Driver',
+                'type' => 'text',
+                'placeholder' => 'e.g: smtp'
+            ],
+            'mail_host' => [
+                'rule' => 'required|string|max:50',
+                'label' => 'Mail Host',
+                'type' => 'text',
+                'placeholder' => 'e.g: smtp.gmail.com'
+            ],
+            'mail_port' => [
+                'rule' => 'required|string|max:50',
+                'label' => 'Mail Port',
+                'type' => 'number',
+                'placeholder' => 'e.g: 587'
+            ],
+            'mail_username' => [
+                'rule' => 'required|string|max:50',
+                'label' => 'Mail Username',
+                'type' => 'text',
+                'placeholder' => 'e.g: example@gmail.com'
+            ],
+            'mail_password' => [
+                'rule' => 'required|string|max:50',
+                'label' => 'Mail Password',
+                'type' => 'password',
+                'placeholder' => 'e.g: **********'
+            ],
+            'mail_encryption' => [
+                'rule' => 'required|string|max:50',
+                'label' => 'Mail Encryption',
+                'type' => 'text',
+                'placeholder' => 'e.g: TLS|SSL'
+            ],
+        ]
     ],
 
     /*
     |--------------------------------------------------------------------------
-    | Applications Form
+    | Applications User access
     |--------------------------------------------------------------------------
-    |
-    | applications form fields
-    |
     */
     'users' => [
         'root' => [
