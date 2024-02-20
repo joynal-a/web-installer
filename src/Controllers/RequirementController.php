@@ -6,9 +6,10 @@ use Abedin\WebInstaller\Lib\Managers\RequirementManager;
 
 class RequirementController extends Controller
 {
-    public function __construct(
-        private $manager = RequirementManager::class
-    ){}
+    private $manager;
+    public function __construct(RequirementManager $requirementManager){
+        $this->manager = $requirementManager;
+    }
      /**
      * Display the installer requirement page.
      */

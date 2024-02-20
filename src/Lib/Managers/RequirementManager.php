@@ -4,6 +4,9 @@ namespace Abedin\WebInstaller\Lib\Managers;
 
 class RequirementManager 
 {
+     /**
+     * @var string
+     */
     private $minPhpVersion = '8.0.0';
 
     /**
