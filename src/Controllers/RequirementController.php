@@ -15,8 +15,8 @@ class RequirementController extends Controller
         $extensions = $this->check(config('installer.php_extensions'));
 
         return match($this->isPublish){
-            true => view('vendor.web-installer.requirment', compact('phpSupportInfo', 'extensions')),
-            default => view('joynala.web-installer::requirment', compact('phpSupportInfo', 'extensions'))
+            true => view('vendor.web-installer.requirement', compact('phpSupportInfo', 'extensions')),
+            default => view('joynala.web-installer::requirement', compact('phpSupportInfo', 'extensions'))
         };
     }
 
