@@ -3,6 +3,7 @@
 namespace Abedin\WebInstaller\Providers;
 
 use Abedin\WebInstaller\Middleware\CheckHasConfigMiddleware;
+use Abedin\WebInstaller\Middleware\VerifyCsrfToken;
 use Illuminate\Support\ServiceProvider;
 
 class AppServiceProvider extends ServiceProvider
@@ -13,7 +14,7 @@ class AppServiceProvider extends ServiceProvider
      * @param string
      */
     private const CONFIG_FILE = __DIR__ . '/../../config/installer.php';
-    
+
     /**
      * Ragister package path name here.
      * @param string
@@ -32,14 +33,14 @@ class AppServiceProvider extends ServiceProvider
 
     public function boot()
     {
-        $this->app['router']->aliasMiddleware('config_check', CheckHasConfigMiddleware::class);
+        $this->app['router']->pushMiddlewareToGroup('web', VerifyCsrfToken::class)->aliasMiddleware('config_check', CheckHasConfigMiddleware::class);
         $this->loadViewsFrom(self::PATH_VIEWS, 'joynala.web-installer');
 
         $this->publishes([
             self::PATH_VIEWS => resource_path('views/vendor/web-installer'),
             self::PATH_ASSETS => public_path('vendor/web-installer'),
         ], 'web-installer');
-        
+
 
         $this->publishes([
             self::CONFIG_FILE => base_path('config/installer.php'),
