@@ -2,15 +2,12 @@
 
 namespace Abedin\WebInstaller\Controllers;
 
-use Abedin\WebInstaller\Lib\Managers\InstallationManager;
+use Abedin\WebInstaller\Lib\Traits\InstallationTrait;
 use Illuminate\Http\Request;
 
 class InstallationController extends Controller
 {
-    private $manager;
-    public function __construct(InstallationManager $installationManager){
-        $this->manager = $installationManager;
-    }
+    use InstallationTrait;
      /**
      * Display the instalation permission page.
      */

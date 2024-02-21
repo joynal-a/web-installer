@@ -1,8 +1,8 @@
 <?php
 
-namespace Abedin\WebInstaller\Lib\Managers;
+namespace Abedin\WebInstaller\Lib\Traits;
 
-class RequirementManager 
+trait RequirementTrait 
 {
      /**
      * @var string
