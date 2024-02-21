@@ -17,7 +17,7 @@
 
                 @foreach ($environmentFields as $key => $types)
                     <form method="post" id="form_{{ ($key + 1) }}" style="display: {{ $key > 0 ? 'none':null }}">
-                        @csrf
+                        {{-- @csrf --}}
                         @foreach ($types as $name => $fields)
                             @isset($fields['option'])
                                 @if ($fields['type'] == 'select')

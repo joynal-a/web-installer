@@ -30,6 +30,11 @@ class InstallationController extends Controller
 
         $request->validate($rules);
 
+        $data = $request->all();
+        // unset($data['_token']);
+
+        $this->setupEnv($data);
+
         return response()->json([
             'status' => 200,
             'massage' => 'enverment setup is successfully.'

@@ -65,33 +65,33 @@ return [
     */
     'environment_fields' => [
         [
-            'app_name' => [
+            'APP_NAME' => [
                 'rule' => 'required|string|max:50',
                 'label' => 'App name',
                 'placeholder' => 'e.g: Web-installer',
                 'type' => 'text'
             ],
-            'app_url' => [
+            'APP_URL' => [
                 'rule' => 'required|url',
                 'label' => 'App base url',
                 'placeholder' => 'e.g: http://example.com',
                 'type' => 'text'
             ],
-            'environment' => [
+            'APP_ENV' => [
                 'rule' => 'required|string|max:50',
                 'label' => 'App eneverment',
                 'placeholder' => 'Select app enverment',
                 'type' => 'select',
                 'option' => ['local', 'production', 'staging', 'development']
             ],
-            'filesystem_disk' => [
+            'FILESYSTEM_DISK' => [
                 'rule' => 'required|string',
                 'label' => 'App file system',
                 'placeholder' => 'Select a file system',
                 'type' => 'select',
                 'option' => ['local', 'public']
             ],
-            'debug' => [
+            'APP_DEBUG' => [
                 'rule' => 'required|string',
                 'label' => 'App debug:',
                 'placeholder' => 'Choose app debug mode',
@@ -99,75 +99,75 @@ return [
                 'type' => 'radio'
             ],
         ],[
-            'database_connection' => [
+            'DB_CONNECTION' => [
                 'rule' => 'required|string|max:50',
                 'label' => 'Database Connection',
                 'placeholder' => 'Select Databese',
                 'type' => 'select',
                 'option' => ['mysql', 'sqlite', 'pgsql', 'sqlsrv']
             ],
-            'database_hostname' => [
+            'DB_HOST' => [
                 'rule' => 'required|string|max:50',
                 'label' => 'Database Host',
                 'type' => 'text',
                 'placeholder' => 'e.g: 127.0.0.1'
             ],
-            'database_port' => [
+            'DB_PORT' => [
                 'rule' => 'required|numeric',
                 'label' => 'Database Port',
                 'type' => 'number',
                 'placeholder' => 'e.g: 3306',
             ],
-            'database_name' => [
+            'DB_DATABASE' => [
                 'rule' => 'required|string|max:50',
                 'label' => 'Database Name',
                 'type' => 'text',
                 'placeholder' => 'e.g: web_installer'
             ],
-            'database_username' => [
+            'DB_USERNAME' => [
                 'rule' => 'required|string|max:50',
                 'label' => 'Database Username',
                 'type' => 'text',
                 'placeholder' => 'e.g: root'
             ],
-            'database_password' => [
+            'DB_PASSWORD' => [
                 'rule' => 'required|string|max:50',
                 'label' => 'Database Password',
                 'type' => 'password',
                 'placeholder' => 'e.g: **********'
             ],
         ],[
-            'mail_driver' => [
+            'MAIL_MAILER' => [
                 'rule' => 'required|string|max:50',
                 'label' => 'Mail Driver',
                 'type' => 'text',
                 'placeholder' => 'e.g: smtp'
             ],
-            'mail_host' => [
+            'MAIL_HOST' => [
                 'rule' => 'required|string|max:50',
                 'label' => 'Mail Host',
                 'type' => 'text',
                 'placeholder' => 'e.g: smtp.gmail.com'
             ],
-            'mail_port' => [
+            'MAIL_PORT' => [
                 'rule' => 'required|string|max:50',
                 'label' => 'Mail Port',
                 'type' => 'number',
                 'placeholder' => 'e.g: 587'
             ],
-            'mail_username' => [
+            'MAIL_USERNAME' => [
                 'rule' => 'required|string|max:50',
                 'label' => 'Mail Username',
                 'type' => 'text',
                 'placeholder' => 'e.g: example@gmail.com'
             ],
-            'mail_password' => [
+            'MAIL_PASSWORD' => [
                 'rule' => 'required|string|max:50',
                 'label' => 'Mail Password',
                 'type' => 'password',
                 'placeholder' => 'e.g: **********'
             ],
-            'mail_encryption' => [
+            'MAIL_ENCRYPTION' => [
                 'rule' => 'required|string|max:50',
                 'label' => 'Mail Encryption',
                 'type' => 'text',
