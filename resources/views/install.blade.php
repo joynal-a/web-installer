@@ -156,7 +156,8 @@
             let currentForm = document.getElementById(formId)
             let nextForm = document.getElementById(nextId)
             let lastForm = "form_{{ count($environmentFields) }}"
-
+            let loader = document.getElementById('loader');
+            loader.style.display = 'flex'
             $.ajax({
                 url : url,
                 type : "POST",
@@ -164,13 +165,29 @@
                 data: formData,
                 success:function(data)
                 {
+                    loader.style.display = 'none'
                     currentForm.style.display = 'none'
                     nextForm.style.display = 'block'
                     console.log(data);
                 },
-                error:function(response) {
-                    // Handle error response
-                    console.log('AJAX error:',response.responseJSON.errors);
+                error:function(jqXHR, textStatus, errorThrown) {
+                    // Check if the server returned a JSON response
+                    if (jqXHR.responseJSON && jqXHR.responseJSON.errors) {
+                        var errors = jqXHR.responseJSON.errors;
+                        // Loop through the errors and display them in your fields
+                        for (var field in errors) {
+                            // console.log(field, errors);
+                            if (errors.hasOwnProperty(field)) {
+                                $(`input[name="${field}"]`).addClass("is-invalid")
+                                $(`select[name="${field}"]`).addClass("is-invalid")
+
+                                var errorMessage = errors[field];
+                                console.log(errorMessage[0]);
+                            }
+
+                        }
+                    }
+                    loader.style.display = 'none'
                 }
             });
         }
