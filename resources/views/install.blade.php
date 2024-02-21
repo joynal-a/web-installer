@@ -17,7 +17,7 @@
 
                 @foreach ($environmentFields as $key => $types)
                     <form method="post" id="form_{{ ($key + 1) }}" style="display: {{ $key > 0 ? 'none':null }}">
-                        {{-- @csrf --}}
+                        @csrf
                         @foreach ($types as $name => $fields)
                             @isset($fields['option'])
                                 @if ($fields['type'] == 'select')
@@ -168,7 +168,7 @@
                     loader.style.display = 'none'
                     currentForm.style.display = 'none'
                     nextForm.style.display = 'block'
-                    console.log(data);
+                    setNewToken()
                 },
                 error:function(jqXHR, textStatus, errorThrown) {
                     // Check if the server returned a JSON response
@@ -190,6 +190,19 @@
                     loader.style.display = 'none'
                 }
             });
+        }
+
+        function setNewToken(){
+            $.ajax({
+                url : '/install/refresh-csrf-token',
+                type : "GET",
+                dataType : "json",
+                success:function(data)
+                {
+                    $("input[name='_token']").val(data.token);
+                }
+            })
+
         }
     </script>
 @endpush

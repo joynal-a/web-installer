@@ -3,7 +3,6 @@
 namespace Abedin\WebInstaller\Providers;
 
 use Abedin\WebInstaller\Middleware\CheckHasConfigMiddleware;
-use Abedin\WebInstaller\Middleware\VerifyCsrfToken;
 use Illuminate\Support\ServiceProvider;
 
 class AppServiceProvider extends ServiceProvider
@@ -33,7 +32,7 @@ class AppServiceProvider extends ServiceProvider
 
     public function boot()
     {
-        $this->app['router']->pushMiddlewareToGroup('web', VerifyCsrfToken::class)->aliasMiddleware('config_check', CheckHasConfigMiddleware::class);
+        $this->app['router']->aliasMiddleware('config_check', CheckHasConfigMiddleware::class);
         $this->loadViewsFrom(self::PATH_VIEWS, 'joynala.web-installer');
 
         $this->publishes([

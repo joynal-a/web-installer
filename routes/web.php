@@ -29,4 +29,8 @@ Route::group(['prefix' => 'install', 'as' => 'installer.', 'middleware' => ['web
         Route::get('/configure', 'index')->name('configure.index');
         Route::post('/app-configure/{index}', 'appConfigure')->name('app-configure.store');
     });
+    
+    Route::get('/refresh-csrf-token', function() {
+        return response()->json(['token' => csrf_token()]);
+    });
 });
