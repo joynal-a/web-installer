@@ -31,7 +31,7 @@ class InstallationController extends Controller
         $request->validate($rules);
 
         $data = $request->all();
-        // unset($data['_token']);
+        unset($data['_token']);
 
         $this->setupEnv($data);
 
