@@ -24,14 +24,22 @@ class InstallationController extends Controller
     {
         $formInfos = config('installer.environment_fields.' . $index);
         $rules = [];
+        $isFuildsForDB = false;
         foreach($formInfos as $name => $formInfo){
+            $isFuildsForDB = $this->isDbCredential($name);
             $rules[$name] = $formInfo['rule'];
         }
 
         $request->validate($rules);
-
         $data = $request->all();
         unset($data['_token']);
+        
+        if($isFuildsForDB && !$this->checkDatabaseConnection($data)){
+            return [
+                'status' => 400,
+                'message' => 'Sorry, Your database credential is wrong'
+            ];
+        }
 
         $this->setupEnv($data);
 
@@ -39,6 +47,11 @@ class InstallationController extends Controller
             'status' => 200,
             'massage' => 'enverment setup is successfully.'
         ]);
+    }
+
+    public function finalInstall()
+    {
+
     }
 
 

@@ -30,4 +30,36 @@ trait InstallationTrait
         }
         file_put_contents($path, implode('', $file));
     }
+
+    /**
+     * check the fuilds is for database.
+     * @return bool
+     * @var string
+     */
+    public function isDbCredential($fiulds): bool
+    {
+        return substr($fiulds, 0, 2) === 'DB' ? true : false;
+    }
+
+    /**
+     * check data base connection.
+     * @return bool
+     * @var string $dbHost
+     * @var string $dbName
+     * @var string $dbuser
+     * @var string $dbPass
+     */
+    function checkDatabaseConnection(array $data): bool
+    {
+        try {
+            if (@mysqli_connect($data['DB_HOST'], $data['DB_USERNAME'], $data['DB_PASSWORD'], $data['DB_DATABASE'])) {
+                return true;
+            } else {
+                return false;
+            }
+        }catch(\Exception $exception){
+            return false;
+        }
+    }
+
 }
