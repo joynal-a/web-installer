@@ -196,6 +196,7 @@
 
 @push('scripts')
     <script>
+        const finalUrl = "{{ route('app.final-install') }}"
         function submitData(formId, nextId, url){
             let formData = $('#' + formId).serializeArray().reduce(function(obj, item) {
                 obj[item.name] = item.value;
@@ -253,7 +254,7 @@
         }
 
         function finalSubmit(){
-
+            aler(finalUrl);
         }
 
         function setNewToken(){

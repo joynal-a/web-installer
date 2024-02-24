@@ -27,9 +27,10 @@ Route::group(['prefix' => 'install', 'as' => 'installer.', 'middleware' => ['web
     // requirement check page routes here
     Route::controller(InstallationController::class)->group(function(){
         Route::get('/configure', 'index')->name('configure.index');
+        Route::get('/app-final-installation', 'finalInstall')->name('app.final-install');
         Route::post('/app-configure/{index}', 'appConfigure')->name('app-configure.store');
     });
-    
+
     Route::get('/refresh-csrf-token', function() {
         return response()->json(['token' => csrf_token()]);
     });
