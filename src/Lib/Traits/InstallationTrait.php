@@ -2,8 +2,9 @@
 
 namespace Abedin\WebInstaller\Lib\Traits;
 
+use Exception;
 use Illuminate\Support\Facades\Artisan;
-use Illuminate\Support\Facades\Schema;
+use Symfony\Component\Console\Output\BufferedOutput;
 
 trait InstallationTrait
 {
@@ -22,7 +23,7 @@ trait InstallationTrait
         foreach($data as $peremiter => $newValue){
             $exists = false;
             foreach($diffFileLines as $lineNo => $oldValue){
-                if (strpos($oldValue, $peremiter) !== false) {
+                if (strpos($oldValue, $peremiter . '=') !== false) {
                     $file[$lineNo] = $peremiter .'='. $newValue . "\n";
                     $exists = true;
                 }
@@ -60,7 +61,7 @@ trait InstallationTrait
             } else {
                 return false;
             }
-        }catch(\Exception $exception){
+        }catch(Exception $exception){
             return false;
         }
     }
@@ -69,20 +70,18 @@ trait InstallationTrait
      * Check .env and possible to migration
      * @return void
      */
-    public function getReadyToRunMigrat(): void
+    public function getReadyToRun()
     {
-        Schema::defaultStringLength(191);
-        Artisan::call('migrate:fresh --force');
-    }
+        $outputLog = new BufferedOutput;
+        Artisan::call('migrate:fresh', ['--force' => true], $outputLog);
 
-    public function getReadytoRunSeeder(): void
-    {
-        Artisan::call('db:seed --force');
+        if(config('installer.seeder_run')){
+            Artisan::call('db:seed', ['--force' => true], $outputLog);
+        }
     }
 
     public function readytoImportMigration()
     {
 
     }
-
 }

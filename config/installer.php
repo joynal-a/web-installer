@@ -4,7 +4,7 @@ return [
 
     'name' => 'Laravel Web Installer',
 
-    'redirect_route' => "welcome",
+    'redirect_route' => "root",
 
     /*
     |--------------------------------------------------------------------------
@@ -13,6 +13,7 @@ return [
     */
     'with_purchase_code' => false,
     'market_name' => 'Codecanyon',
+    'seeder_run' => true,
 
     /*
     |--------------------------------------------------------------------------

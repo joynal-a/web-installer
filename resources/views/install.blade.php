@@ -271,24 +271,40 @@
         }
 
         function finalSubmit(){
+            loader.style.display = 'flex'
             $.ajax({
                 url : finalUrl,
                 type : "GET",
                 dataType : "json",
                 success:function(data)
                 {
-                    document.getElementById('mainCard').remove()
-                    Swal.fire({
-                        title: 'Thanks',
-                        text: 'Our Installation system is perfectly done please wait. You will be redirected.',
-                        icon: 'success',
-                        timer: 5000,
-                        showConfirmButton: true,
-                        confirmButtonText: 'Click To Redirect',
-                        willClose: () => {
-                            window.location.href = '/';
-                        }
-                    });
+                    if(data.status == 400){
+                        Swal.fire({
+                            title: 'Wrong!',
+                            text: data.message,
+                            icon: 'error',
+                            confirmButtonText: 'Try Again'
+                        })
+                    }
+
+                    if(data.status == 200){
+                        document.getElementById('mainCard').remove()
+                        Swal.fire({
+                            title: 'Thanks',
+                            text: 'Our Installation system is perfectly done please wait. You will be redirected.',
+                            icon: 'success',
+                            timer: 5000,
+                            showConfirmButton: true,
+                            confirmButtonText: 'Click To Redirect',
+                            willClose: () => {
+                                window.location.href = '/';
+                            }
+                        });
+                    }
+
+                },
+                error:function(jqXHR, textStatus, errorThrown) {
+                    loader.style.display = 'none'
                 }
             })
         }

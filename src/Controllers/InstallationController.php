@@ -3,7 +3,9 @@
 namespace Abedin\WebInstaller\Controllers;
 
 use Abedin\WebInstaller\Lib\Traits\InstallationTrait;
+use Exception;
 use Illuminate\Http\Request;
+use Symfony\Component\Console\Output\BufferedOutput;
 
 class InstallationController extends Controller
 {
@@ -51,11 +53,15 @@ class InstallationController extends Controller
 
     public function finalInstall()
     {
-        // migration run here
-        $this->getReadyToRunMigrat();
-
-        // seeder run here
-        $this->getReadytoRunSeeder();
+        // Ready for some commands run here
+        try {
+            $this->getReadyToRun();
+        } catch (Exception $e) {
+            return response()->json([
+                'status' => 400,
+                'massage' => $e->getMessage()
+            ]);
+        }
 
         return response()->json([
             'status' => 200,
