@@ -6,10 +6,6 @@ use Closure;
 
 class CheckHasConfigMiddleware
 {
-    protected $except = [
-        '/app-configure/{index}'
-    ];
-
     public function handle($request, Closure $next)
     {
         $hasConfigFile = is_file(base_path('config/installer.php'));

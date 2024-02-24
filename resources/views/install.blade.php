@@ -2,7 +2,7 @@
 
 @section('content')
 <div class="row px-5">
-    <div class="col-6 col-md-4 ms-auto d-flex align-items-center me-5" style="height: 100vh;">
+    <div class="col-6 col-md-4 ms-auto d-flex align-items-center me-5" style="height: 100vh;" id="mainCard">
         <div class="card w-100 pt-3" style="overflow: hidden;border-bottom: none;">
             <div class="loader" id="loader" style="display: none">
                 <img src="https://i.ibb.co/vzDRR5f/cog.gif" alt="cog" border="0">
@@ -196,7 +196,20 @@
 
 @push('scripts')
     <script>
-        const finalUrl = "{{ route('app.final-install') }}"
+        const finalUrl = "{{ route('installer.app.final-install') }}"
+        const csrfUrl = "{{ route('installer.new-csrf') }}"
+        const Toast = Swal.mixin({
+        toast: true,
+        position: "top-end",
+        showConfirmButton: false,
+        timer: 3000,
+        timerProgressBar: true,
+        didOpen: (toast) => {
+            toast.onmouseenter = Swal.stopTimer;
+            toast.onmouseleave = Swal.resumeTimer;
+        }
+        });
+
         function submitData(formId, nextId, url){
             let formData = $('#' + formId).serializeArray().reduce(function(obj, item) {
                 obj[item.name] = item.value;
@@ -228,6 +241,10 @@
                     }
 
                     if(data.status == 200){
+                        Toast.fire({
+                            icon: "success",
+                            title: "The environment setup is successful."
+                        });
                         currentForm.style.display = 'none'
                         nextForm.style.display = 'block'
                     }
@@ -254,12 +271,31 @@
         }
 
         function finalSubmit(){
-            aler(finalUrl);
+            $.ajax({
+                url : finalUrl,
+                type : "GET",
+                dataType : "json",
+                success:function(data)
+                {
+                    document.getElementById('mainCard').remove()
+                    Swal.fire({
+                        title: 'Thanks',
+                        text: 'Our Installation system is perfectly done please wait. You will be redirected.',
+                        icon: 'success',
+                        timer: 5000,
+                        showConfirmButton: true,
+                        confirmButtonText: 'Click To Redirect',
+                        willClose: () => {
+                            window.location.href = '/';
+                        }
+                    });
+                }
+            })
         }
 
         function setNewToken(){
             $.ajax({
-                url : '/install/refresh-csrf-token',
+                url : csrfUrl,
                 type : "GET",
                 dataType : "json",
                 success:function(data)

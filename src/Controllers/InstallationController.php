@@ -33,7 +33,7 @@ class InstallationController extends Controller
         $request->validate($rules);
         $data = $request->all();
         unset($data['_token']);
-        
+
         if($isFuildsForDB && !$this->checkDatabaseConnection($data)){
             return [
                 'status' => 400,
@@ -51,7 +51,16 @@ class InstallationController extends Controller
 
     public function finalInstall()
     {
+        // migration run here
+        $this->getReadyToRunMigrat();
 
+        // seeder run here
+        $this->getReadytoRunSeeder();
+
+        return response()->json([
+            'status' => 200,
+            'massage' => 'enverment setup is successfully.'
+        ]);
     }
 
 

@@ -2,6 +2,9 @@
 
 namespace Abedin\WebInstaller\Lib\Traits;
 
+use Illuminate\Support\Facades\Artisan;
+use Illuminate\Support\Facades\Schema;
+
 trait InstallationTrait
 {
     public function setupEnv(array $data): void
@@ -49,7 +52,7 @@ trait InstallationTrait
      * @var string $dbuser
      * @var string $dbPass
      */
-    function checkDatabaseConnection(array $data): bool
+    public function checkDatabaseConnection(array $data): bool
     {
         try {
             if (@mysqli_connect($data['DB_HOST'], $data['DB_USERNAME'], $data['DB_PASSWORD'], $data['DB_DATABASE'])) {
@@ -60,6 +63,26 @@ trait InstallationTrait
         }catch(\Exception $exception){
             return false;
         }
+    }
+
+    /**
+     * Check .env and possible to migration
+     * @return void
+     */
+    public function getReadyToRunMigrat(): void
+    {
+        Schema::defaultStringLength(191);
+        Artisan::call('migrate:fresh --force');
+    }
+
+    public function getReadytoRunSeeder(): void
+    {
+        Artisan::call('db:seed --force');
+    }
+
+    public function readytoImportMigration()
+    {
+
     }
 
 }
