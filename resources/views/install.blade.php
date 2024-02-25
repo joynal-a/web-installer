@@ -278,32 +278,28 @@
                 dataType : "json",
                 success:function(data)
                 {
-                    if(data.status == 400){
-                        Swal.fire({
-                            title: 'Wrong!',
-                            text: data.message,
-                            icon: 'error',
-                            confirmButtonText: 'Try Again'
-                        })
-                    }
-
-                    if(data.status == 200){
-                        document.getElementById('mainCard').remove()
-                        Swal.fire({
-                            title: 'Thanks',
-                            text: 'Our Installation system is perfectly done please wait. You will be redirected.',
-                            icon: 'success',
-                            timer: 5000,
-                            showConfirmButton: true,
-                            confirmButtonText: 'Click To Redirect',
-                            willClose: () => {
-                                window.location.href = '/';
-                            }
-                        });
-                    }
-
+                    document.getElementById('mainCard').remove()
+                    Swal.fire({
+                        title: 'Congratulation',
+                        text: 'Our Installation system is perfectly done please wait. You will be redirected within 10 seconds.',
+                        icon: 'success',
+                        timer: 5000,
+                        showConfirmButton: true,
+                        confirmButtonText: 'Click To Redirect',
+                        willClose: () => {
+                            window.location.href = '/';
+                        }
+                    });
                 },
                 error:function(jqXHR, textStatus, errorThrown) {
+                    let error = JSON.parse(jqXHR.responseText)
+                    console.log(error);
+                    Swal.fire({
+                        title: 'Something went wrong!',
+                        text: error.message,
+                        icon: 'error',
+                        confirmButtonText: 'Try Again'
+                    })
                     loader.style.display = 'none'
                 }
             })

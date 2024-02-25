@@ -70,7 +70,7 @@ trait InstallationTrait
      * Check .env and possible to migration
      * @return void
      */
-    public function getReadyToRun()
+    public function getReadyToRun(): void
     {
         $outputLog = new BufferedOutput;
         Artisan::call('migrate:fresh', ['--force' => true], $outputLog);
@@ -78,6 +78,13 @@ trait InstallationTrait
         if(config('installer.seeder_run')){
             Artisan::call('db:seed', ['--force' => true], $outputLog);
         }
+    }
+
+    protected function createInstalationFile(): void
+    {
+        $signature =  base64_encode('Congratulations, The Installation Process is Completed successfully. The Installation process is made by Joynal Abedin. Thanks for with us');
+        $path = storage_path('installed');
+        file_put_contents($path, $signature);
     }
 
     public function readytoImportMigration()
