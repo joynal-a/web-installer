@@ -52,7 +52,7 @@ class InstallationController extends Controller
 
     public function purchaseVery(Request $request)
     {
-
+        
     }
 
     public function finalInstall()
