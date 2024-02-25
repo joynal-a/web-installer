@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Console\Commands;
+namespace Abedin\WebInstaller\Commands;
 
 use Illuminate\Console\Command;
 

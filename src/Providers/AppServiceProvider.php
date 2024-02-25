@@ -3,7 +3,6 @@
 namespace Abedin\WebInstaller\Providers;
 
 use Abedin\WebInstaller\Middleware\CheckHasConfigMiddleware;
-use App\Console\Commands\VerifyCode;
 use Illuminate\Support\ServiceProvider;
 
 class AppServiceProvider extends ServiceProvider
