@@ -4,15 +4,18 @@ return [
 
     'name' => 'Laravel Web Installer',
 
-    'redirect_route' => "root",
-
     /*
     |--------------------------------------------------------------------------
     | Market place validation
     |--------------------------------------------------------------------------
     */
-    'with_purchase_code' => false,
-    'market_name' => 'Codecanyon',
+    'verify_purchase' => true,
+    'verify_code' => '',
+     /*
+    |--------------------------------------------------------------------------
+    | Seeder run permission here
+    |--------------------------------------------------------------------------
+    */
     'seeder_run' => true,
 
     /*
@@ -175,6 +178,28 @@ return [
                 'placeholder' => 'e.g: TLS|SSL'
             ],
         ]
+    ],
+
+    /*
+    |--------------------------------------------------------------------------
+    | Mendetory items which you want to install
+    |--------------------------------------------------------------------------
+    */
+    'need_to_know' => [
+        'Codecanyon Purchase Code',
+
+        'Database Name',
+        'Database Username',
+        'Database Password',
+        'Database Hostname',
+        'Database Port',
+
+        'Mail Driver',
+        'Mail Host',
+        'Mail Port',
+        'Mail Username',
+        'Mail Password',
+        'Mail Encryption'
     ],
 
     /*

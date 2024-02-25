@@ -3,6 +3,7 @@
 namespace Abedin\WebInstaller\Providers;
 
 use Abedin\WebInstaller\Middleware\CheckHasConfigMiddleware;
+use App\Console\Commands\VerifyCode;
 use Illuminate\Support\ServiceProvider;
 
 class AppServiceProvider extends ServiceProvider
@@ -28,6 +29,7 @@ class AppServiceProvider extends ServiceProvider
     public function register(): void
     {
         $this->loadRoutesFrom(__DIR__.'/../../routes/web.php');
+        $this->registerVerifyCodeCommand();
     }
 
     public function boot()
@@ -46,5 +48,13 @@ class AppServiceProvider extends ServiceProvider
         ], 'web-installer-config');
     }
 
-
+    /**
+     * @return void
+     * register a command for generate a code
+     */
+    protected function registerVerifyCodeCommand(): void
+    {
+        $this->app->bind('command.make:verify-code', VerifyCode::class);
+        $this->commands(['command.make:verify-code']);
+    }
 }

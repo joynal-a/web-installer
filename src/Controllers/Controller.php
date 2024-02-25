@@ -2,22 +2,22 @@
 
 namespace Abedin\WebInstaller\Controllers;
 
-class Controller 
+class Controller
 {
 
     /**
      * @property bool $isPublish
      * check the views is publis or not
      */
-    protected $isPublish = false;
+    public $isPublish = false;
     /**
      * @property bool $hasConfigFile
      * check has config files (installer.php) is exists or not
      */
-    protected $hasConfigFile = false;
+    public $hasConfigFile = false;
 
     /**
-     * assign bool which i check 
+     * assign bool which i check
      * @property $hasConfigFile | $isPublish
      */
     public function __construct()

@@ -50,6 +50,11 @@ class InstallationController extends Controller
         ]);
     }
 
+    public function purchaseVery(Request $request)
+    {
+
+    }
+
     public function finalInstall()
     {
         // Ready for some commands run here

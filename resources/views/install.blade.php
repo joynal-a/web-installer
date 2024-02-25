@@ -198,6 +198,7 @@
     <script>
         const finalUrl = "{{ route('installer.app.final-install') }}"
         const csrfUrl = "{{ route('installer.new-csrf') }}"
+        
         const Toast = Swal.mixin({
         toast: true,
         position: "top-end",

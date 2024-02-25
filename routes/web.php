@@ -29,6 +29,7 @@ Route::group(['prefix' => 'install', 'as' => 'installer.', 'middleware' => ['web
         Route::get('/configure', 'index')->name('configure.index');
         Route::get('/app-final-installation', 'finalInstall')->name('app.final-install');
         Route::post('/app-configure/{index}', 'appConfigure')->name('app-configure.store');
+        Route::post('/verify-purchase', 'purchaseVery')->name('verify-perchase');
     });
 
     Route::get('/refresh-csrf-token', function() {
