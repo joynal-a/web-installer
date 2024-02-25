@@ -2,6 +2,7 @@
 
 namespace Abedin\WebInstaller\Providers;
 
+use Abedin\WebInstaller\Commands\VerifyCode;
 use Abedin\WebInstaller\Middleware\CheckHasConfigMiddleware;
 use Illuminate\Support\ServiceProvider;
 
