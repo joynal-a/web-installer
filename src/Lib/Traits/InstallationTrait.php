@@ -91,4 +91,42 @@ trait InstallationTrait
     {
 
     }
+
+    private function decrypt($encryptedCode, $key): string|bool
+    {
+        $data = base64_decode($encryptedCode);
+        $ivLength = openssl_cipher_iv_length('aes-256-cbc');
+        $iv = substr($data, 0, $ivLength);
+        $encryptedData = substr($data, $ivLength);
+        return openssl_decrypt($encryptedData, 'aes-256-cbc', $key, 0, $iv);
+    }
+
+    public function verifyCode($request, $url)
+    {
+        // Data to be sent in the POST request
+        $data = $request->all();
+        unset($data('_token'));
+
+        // Initialize cURL session
+        $ch = curl_init($url);
+
+        // Set cURL options
+        curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+        curl_setopt($ch, CURLOPT_POST, true);
+        curl_setopt($ch, CURLOPT_POSTFIELDS, $data);
+
+        // Execute cURL session and get the response
+        $response = curl_exec($ch);
+
+        // Check for cURL errors
+        if (curl_errno($ch)) {
+            return curl_error($ch);
+        }
+
+        // Close cURL session
+        curl_close($ch);
+
+        // Output the API response
+        return $response;
+    }
 }

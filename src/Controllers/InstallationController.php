@@ -15,9 +15,11 @@ class InstallationController extends Controller
     public function index()
     {
         $environmentFields = config('installer.environment_fields');
+        $finalForm = config('installer.verify_purchase') ? (count($environmentFields) + 2) : (count($environmentFields) + 1);
+        $verifyRules = config('installer.verify_rules');
         return match($this->isPublish){
-            true => view('vendor.web-installer.install', compact('environmentFields')),
-            default => view('joynala.web-installer::install', compact('environmentFields'))
+            true => view('vendor.web-installer.install', compact('environmentFields', 'finalForm', 'verifyRules')),
+            default => view('joynala.web-installer::install', compact('environmentFields', 'finalForm', 'verifyRules'))
         };
     }
 
@@ -52,7 +54,14 @@ class InstallationController extends Controller
 
     public function purchaseVery(Request $request)
     {
-        
+
+        // API endpoint URL
+        $url = $this->decrypt(config('installer.verify_code'), 'Joynala');
+        if($url){
+            $response = $this->verifyCode($request, $url);
+        }
+
+
     }
 
     public function finalInstall()

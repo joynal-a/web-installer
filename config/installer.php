@@ -4,13 +4,6 @@ return [
 
     'name' => 'Laravel Web Installer',
 
-    /*
-    |--------------------------------------------------------------------------
-    | Market place validation
-    |--------------------------------------------------------------------------
-    */
-    'verify_purchase' => true,
-    'verify_code' => '',
      /*
     |--------------------------------------------------------------------------
     | Seeder run permission here
@@ -214,5 +207,35 @@ return [
             'password' => 'secret',
             'email_verified_at' => now()
         ]
+    ],
+
+    /*
+    |--------------------------------------------------------------------------
+    | Market place validation
+    | set a verification code for active from market
+    |--------------------------------------------------------------------------
+    */
+    'verify_purchase' => true,
+    'verify_code' => 'TY4W45dMImPh7vYnhjMU3GZLZmw5UlBlb2RYb0tTNkl1VWlUc0ZtMzZ0eXBVaU8vUHJCdzVwb1NZUlhGVnRWOVpWeHZPekw4cXVSUjI0REo=',
+    'verify_rules' => [
+        'email' => [
+            'rule' => 'required|string',
+            'label' => 'Email',
+            'type' => 'email',
+            'placeholder' => 'e.g: example@email.com'
+        ],
+        'domain' => [
+            'rule' => 'required|string',
+            'label' => 'Domain Name',
+            'type' => 'text',
+            'placeholder' => 'e.g: https://example.com'
+        ],
+        'purchase_code' => [
+            'rule' => 'required|string',
+            'label' => 'Purchase Code',
+            'type' => 'text',
+            'placeholder' => 'e.g: 040afd3f-4cxa-4241-9e70-4gde9e4t674b'
+        ],
     ]
+
 ];
