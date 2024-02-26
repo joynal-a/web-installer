@@ -149,7 +149,7 @@
                  </div>
 
                  <div class="my-4 py-4 absolute-bottom-left right-0 d-flex justify-content-center">
-                     <button onclick="" type="button" class="btn btn-install text-uppercase">Next</button>
+                     <button onclick='verifyPurchase(`{{ route("installer.verify-perchase") }}`, "form_{{ $finalForm - 1 }}")' type="button" class="btn btn-install text-uppercase">Verify Purchase</button>
                  </div>
              </form>
          @endif
@@ -279,7 +279,6 @@
 
             let currentForm = document.getElementById(formId)
             let nextForm = document.getElementById(nextId)
-            let lastForm = "form_{{ count($environmentFields) }}"
             let loader = document.getElementById('loader');
 
             loader.style.display = 'flex'
@@ -316,7 +315,6 @@
                         var errors = jqXHR.responseJSON.errors;
                         // Loop through the errors and display them in your fields
                         for (var field in errors) {
-                            // console.log(field, errors);
                             if (errors.hasOwnProperty(field)) {
                                 $(`input[name="${field}"]`).addClass("is-invalid")
                                 $(`select[name="${field}"]`).addClass("is-invalid")
@@ -329,6 +327,46 @@
                     loader.style.display = 'none'
                 }
             });
+        }
+
+        function verifyPurchase(url, formId){
+
+            let formData = $('#' + formId).serializeArray().reduce(function(obj, item) {
+                obj[item.name] = item.value;
+                return obj;
+            }, {});
+
+            loader.style.display = 'flex'
+            $.ajax({
+                url : url,
+                type : "POST",
+                dataType : "json",
+                date: formData,
+                success:function(data)
+                {
+                    // Swal.fire({
+                    //     title: 'Congratulation',
+                    //     text: 'Our Installation system is perfectly done please wait. You will be redirected within 10 seconds.',
+                    //     icon: 'success',
+                    //     timer: 5000,
+                    //     showConfirmButton: true,
+                    //     confirmButtonText: 'Click To Redirect',
+                    //     willClose: () => {
+                    //         window.location.href = '/';
+                    //     }
+                    // });
+                },
+                error:function(jqXHR, textStatus, errorThrown) {
+                    let error = JSON.parse(jqXHR.responseText)
+                    Swal.fire({
+                        title: 'Something went wrong!',
+                        text: error.message,
+                        icon: 'error',
+                        confirmButtonText: 'Try Again'
+                    })
+                    loader.style.display = 'none'
+                }
+            })
         }
 
         function finalSubmit(){

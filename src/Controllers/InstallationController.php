@@ -54,14 +54,18 @@ class InstallationController extends Controller
 
     public function purchaseVery(Request $request)
     {
-
         // API endpoint URL
         $url = $this->decrypt(config('installer.verify_code'), 'Joynala');
         if($url){
-            $response = $this->verifyCode($request, $url);
+            $data = $request->all();
+            unset($data['_token']);
+            $response = $this->verifyCode($data, $url);
         }
-
-
+        dd($response);
+        return response()->json([
+            'status' => 200,
+            'massage' => 'Purchase is verified successfully.'
+        ]);
     }
 
     public function finalInstall()

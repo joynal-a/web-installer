@@ -216,7 +216,7 @@ return [
     |--------------------------------------------------------------------------
     */
     'verify_purchase' => true,
-    'verify_code' => 'TY4W45dMImPh7vYnhjMU3GZLZmw5UlBlb2RYb0tTNkl1VWlUc0ZtMzZ0eXBVaU8vUHJCdzVwb1NZUlhGVnRWOVpWeHZPekw4cXVSUjI0REo=',
+    'verify_code' => 'zCMtNHj9GCsdkTDtnpsFCjhhMHJ2WFZ4TE1RbkpNaGxJT2t4TVl1ZUhBRFR5RGJraW1JQkVTRUpEaTFxRGFyMWNHQkdHUWhMUkx3c0ZrS2U=',
     'verify_rules' => [
         'email' => [
             'rule' => 'required|string',

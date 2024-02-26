@@ -101,12 +101,8 @@ trait InstallationTrait
         return openssl_decrypt($encryptedData, 'aes-256-cbc', $key, 0, $iv);
     }
 
-    public function verifyCode($request, $url)
+    public function verifyCode(array $data, $url)
     {
-        // Data to be sent in the POST request
-        $data = $request->all();
-        unset($data('_token'));
-
         // Initialize cURL session
         $ch = curl_init($url);
 
