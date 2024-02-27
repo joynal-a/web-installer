@@ -2,7 +2,7 @@
 
 namespace Abedin\WebInstaller\Controllers;
 
-use Abedin\WebInstaller\Lib\Traits\PermissionTrait;
+use Abedin\WebInstaller\Traits\PermissionTrait;
 
 class PermissionController extends Controller
 {

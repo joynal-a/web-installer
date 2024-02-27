@@ -2,7 +2,7 @@
 
 namespace Abedin\WebInstaller\Controllers;
 
-use Abedin\WebInstaller\Lib\Traits\InstallationTrait;
+use Abedin\WebInstaller\Traits\InstallationTrait;
 use Exception;
 use Illuminate\Http\Request;
 

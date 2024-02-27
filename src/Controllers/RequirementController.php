@@ -2,7 +2,7 @@
 
 namespace Abedin\WebInstaller\Controllers;
 
-use Abedin\WebInstaller\Lib\Traits\RequirementTrait;
+use Abedin\WebInstaller\Traits\RequirementTrait;
 
 class RequirementController extends Controller
 {

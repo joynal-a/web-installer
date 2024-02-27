@@ -1,6 +1,6 @@
 <?php
 
-namespace Abedin\WebInstaller\Lib\Traits;
+namespace Abedin\WebInstaller\Traits;
 
 use Exception;
 use Illuminate\Support\Facades\Artisan;
