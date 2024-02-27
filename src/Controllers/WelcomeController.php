@@ -12,11 +12,12 @@ class WelcomeController extends Controller
     public function index()
     {
         $hasConfigFile = $this->hasConfigFile;
+        $items = config('installer.need_to_know');
         // check vendor is published or not
-        
+
         return match($this->isPublish){
-            true => view('vendor.web-installer.index', compact('hasConfigFile')),
-            default => view('joynala.web-installer::index', compact('hasConfigFile'))
+            true => view('vendor.web-installer.index', compact('hasConfigFile', 'items')),
+            default => view('joynala.web-installer::index', compact('hasConfigFile', 'items'))
         };
     }
 

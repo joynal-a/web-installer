@@ -35,7 +35,6 @@ class InstallationController extends Controller
 
         $request->validate($rules);
         $data = $request->all();
-        unset($data['_token']);
 
         if($isFuildsForDB && !$this->checkDatabaseConnection($data)){
             return [
@@ -58,10 +57,8 @@ class InstallationController extends Controller
         $url = $this->decrypt(config('installer.verify_code'), 'Joynala');
         if($url){
             $data = $request->all();
-            unset($data['_token']);
             $response = $this->verifyCode($data, $url);
         }
-        dd($response);
         return response()->json([
             'status' => 200,
             'massage' => 'Purchase is verified successfully.'

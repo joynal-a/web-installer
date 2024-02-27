@@ -15,145 +15,141 @@
 
             <div class="w-80 m-auto">
             {{-- Dynamic instalation process start here --}}
-                @foreach ($environmentFields as $key => $types)
-                    <form method="post" id="form_{{ ($key + 1) }}" style="display: {{ $key > 0 ? 'none':null }}">
-                        @csrf
-                        @foreach ($types as $name => $fields)
-                            @isset($fields['option'])
-                                @if ($fields['type'] == 'select')
-                                    <div class="mb-3">
-                                        <label for="">{{ $fields['label'] }}@if (substr($fields['rule'], 0, 8) === 'required')<strong class="text-danger">*</strong>@endif</label>
-                                        <select name="{{ $name }}" class="form-control">
-                                            <option value="">{{ $fields['placeholder'] }}</option>
-                                            @foreach ($fields['option'] as $option)
-                                            <option value="{{ $option }}">{{ $option }}</option>
-                                            @endforeach
-                                        </select>
-                                    </div>
-                                @else
-                                <div class="mb-3">
-                                    <label for="">{{ $fields['label'] }}@if (substr($fields['rule'], 0, 8) === 'required')<strong class="text-danger">*</strong>@endif</label> <br>
-                                    @foreach ($fields['option'] as $k => $option)
-                                    <label for="radio_{{ $option }}" class="{{ $k > 0 ? 'ms-4':'' }}">
-                                        {{ $option ? 'True':'False' }} <input type="radio" id="radio_{{ $option }}" {{ !$option ? 'checked':'' }} name="{{ $name }}" value="{{ $option ? 'true':'false' }}" class="form-control-radio">
-                                    </label>
-                                    @endforeach
-                                </div>
-                                @endif
-                            @else
+            @foreach ($environmentFields as $key => $types)
+                <form method="post" id="form_{{ ($key + 1) }}" style="display: {{ $key > 0 ? 'none':null }}">
+                    @foreach ($types as $name => $fields)
+                        @isset($fields['option'])
+                            @if ($fields['type'] == 'select')
                                 <div class="mb-3">
                                     <label for="">{{ $fields['label'] }}@if (substr($fields['rule'], 0, 8) === 'required')<strong class="text-danger">*</strong>@endif</label>
-                                    <input type="{{ $fields['type'] }}" name="{{ $name }}" placeholder="{{ $fields['placeholder'] }}" class="form-control">
+                                    <select name="{{ $name }}" class="form-control">
+                                        <option value="">{{ $fields['placeholder'] }}</option>
+                                        @foreach ($fields['option'] as $option)
+                                        <option value="{{ $option }}">{{ $option }}</option>
+                                        @endforeach
+                                    </select>
                                 </div>
-                            @endisset
-                        @endforeach
+                            @else
+                            <div class="mb-3">
+                                <label for="">{{ $fields['label'] }}@if (substr($fields['rule'], 0, 8) === 'required')<strong class="text-danger">*</strong>@endif</label> <br>
+                                @foreach ($fields['option'] as $k => $option)
+                                <label for="radio_{{ $option }}" class="{{ $k > 0 ? 'ms-4':'' }}">
+                                    {{ $option ? 'True':'False' }} <input type="radio" id="radio_{{ $option }}" {{ !$option ? 'checked':'' }} name="{{ $name }}" value="{{ $option ? 'true':'false' }}" class="form-control-radio">
+                                </label>
+                                @endforeach
+                            </div>
+                            @endif
+                        @else
+                            <div class="mb-3">
+                                <label for="">{{ $fields['label'] }}@if (substr($fields['rule'], 0, 8) === 'required')<strong class="text-danger">*</strong>@endif</label>
+                                <input type="{{ $fields['type'] }}" name="{{ $name }}" placeholder="{{ $fields['placeholder'] }}" class="form-control">
+                            </div>
+                        @endisset
+                    @endforeach
 
-                        <div class="d-flex mt-3">
-                            <div class="me-2">
-                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
-                                    viewBox="0 0 16 16">
-                                    <g id="Group_22706" data-name="Group 22706"
-                                        transform="translate(-704 -571)">
-                                        <g id="Rectangle_19036" data-name="Rectangle 19036"
-                                            transform="translate(704 571)" fill="#fff" stroke="#ea4335"
-                                            stroke-width="1">
-                                            <rect width="16" height="16" rx="8" stroke="none">
-                                            </rect>
-                                            <rect x="0.5" y="0.5" width="15" height="15" rx="7.5"
-                                                fill="none"></rect>
-                                        </g>
-                                        <g id="Group_22693" data-name="Group 22693"
-                                            transform="translate(0 -12)">
-                                            <g id="Group_22698" data-name="Group 22698">
-                                                <rect id="Rectangle_19044" data-name="Rectangle 19044"
-                                                    width="1.5" height="5" rx="0.75"
-                                                    transform="translate(715.475 589.939) rotate(45)"
-                                                    fill="#ea4335"></rect>
-                                                <rect id="Rectangle_19111" data-name="Rectangle 19111"
-                                                    width="1.5" height="5" rx="0.75"
-                                                    transform="translate(716.536 591) rotate(135)"
-                                                    fill="#ea4335"></rect>
-                                                <rect id="Rectangle_19051" data-name="Rectangle 19051"
-                                                    width="8" height="1.5" rx="0.75"
-                                                    transform="translate(708 590.25)" fill="#ea4335"></rect>
-                                            </g>
+                    <div class="d-flex mt-3">
+                        <div class="me-2">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
+                                viewBox="0 0 16 16">
+                                <g id="Group_22706" data-name="Group 22706"
+                                    transform="translate(-704 -571)">
+                                    <g id="Rectangle_19036" data-name="Rectangle 19036"
+                                        transform="translate(704 571)" fill="#fff" stroke="#ea4335"
+                                        stroke-width="1">
+                                        <rect width="16" height="16" rx="8" stroke="none">
+                                        </rect>
+                                        <rect x="0.5" y="0.5" width="15" height="15" rx="7.5"
+                                            fill="none"></rect>
+                                    </g>
+                                    <g id="Group_22693" data-name="Group 22693"
+                                        transform="translate(0 -12)">
+                                        <g id="Group_22698" data-name="Group 22698">
+                                            <rect id="Rectangle_19044" data-name="Rectangle 19044"
+                                                width="1.5" height="5" rx="0.75"
+                                                transform="translate(715.475 589.939) rotate(45)"
+                                                fill="#ea4335"></rect>
+                                            <rect id="Rectangle_19111" data-name="Rectangle 19111"
+                                                width="1.5" height="5" rx="0.75"
+                                                transform="translate(716.536 591) rotate(135)"
+                                                fill="#ea4335"></rect>
+                                            <rect id="Rectangle_19051" data-name="Rectangle 19051"
+                                                width="8" height="1.5" rx="0.75"
+                                                transform="translate(708 590.25)" fill="#ea4335"></rect>
                                         </g>
                                     </g>
-                                </svg>
-                            </div>
-                            <p class="ml-2 mb-0 fs-7 fw-500" style="color: #666; line-height: 18px;">
-                                During the installation process, we will check if the files that are needed to
-                                be written (.env file) have write permission. We will also check if curl are
-                                enabled on your server or not.
-                            </p>
+                                </g>
+                            </svg>
                         </div>
+                        <p class="ml-2 mb-0 fs-7 fw-500" style="color: #666; line-height: 18px;">
+                            During the installation process, we will check if the files that are needed to
+                            be written (.env file) have write permission. We will also check if curl are
+                            enabled on your server or not.
+                        </p>
+                    </div>
 
-                        <div class="my-4 py-4 absolute-bottom-left right-0 d-flex justify-content-center">
-                            <button onclick="submitData('form_{{ ($key + 1) }}', 'form_{{ ($key + 2) }}', '{{ route('installer.app-configure.store', $key) }}')" type="button" class="btn btn-install text-uppercase">Next</button>
-                        </div>
-                    </form>
-                @endforeach
+                    <div class="my-4 py-4 absolute-bottom-left right-0 d-flex justify-content-center">
+                        <button onclick="submitData('form_{{ ($key + 1) }}', 'form_{{ ($key + 2) }}', '{{ route('installer.app-configure.store', $key) }}')" type="button" class="btn btn-install text-uppercase">Next</button>
+                    </div>
+                </form>
+            @endforeach
             {{-- Dynamic instalation process end here --}}
 
              {{-- verify purchase code process start here --}}
              @if (config('installer.verify_purchase'))
-             <form method="post" id="form_{{ $finalForm - 1 }}" style="display:none">
-                 @csrf
-                 @foreach ($verifyRules as $name => $verifyRule)
-                 <div class="mb-3">
-                     <label for="">{{ $verifyRule['label'] }}@if(substr($fields['rule'], 0, 8) === 'required')<strong class="text-danger">*</strong>@endif</label>
-                     <input type="{{ $verifyRule['type'] }}" name="{{ $name }}" placeholder="{{ $verifyRule['placeholder'] }}" class="form-control">
-                 </div>
-                 @endforeach
+                <form method="post" id="form_{{ ($finalForm - 1) }}" style="display:none">
+                    @foreach ($verifyRules as $name => $verifyRule)
+                    <div class="mb-3">
+                        <label for="">{{ $verifyRule['label'] }}@if(substr($fields['rule'], 0, 8) === 'required')<strong class="text-danger">*</strong>@endif</label>
+                        <input type="{{ $verifyRule['type'] }}" name="{{ $name }}" placeholder="{{ $verifyRule['placeholder'] }}" class="form-control">
+                    </div>
+                    @endforeach
 
+                    <div class="d-flex mt-3">
+                        <div class="me-2">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
+                                viewBox="0 0 16 16">
+                                <g id="Group_22706" data-name="Group 22706"
+                                    transform="translate(-704 -571)">
+                                    <g id="Rectangle_19036" data-name="Rectangle 19036"
+                                        transform="translate(704 571)" fill="#fff" stroke="#ea4335"
+                                        stroke-width="1">
+                                        <rect width="16" height="16" rx="8" stroke="none">
+                                        </rect>
+                                        <rect x="0.5" y="0.5" width="15" height="15" rx="7.5"
+                                            fill="none"></rect>
+                                    </g>
+                                    <g id="Group_22693" data-name="Group 22693"
+                                        transform="translate(0 -12)">
+                                        <g id="Group_22698" data-name="Group 22698">
+                                            <rect id="Rectangle_19044" data-name="Rectangle 19044"
+                                                width="1.5" height="5" rx="0.75"
+                                                transform="translate(715.475 589.939) rotate(45)"
+                                                fill="#ea4335"></rect>
+                                            <rect id="Rectangle_19111" data-name="Rectangle 19111"
+                                                width="1.5" height="5" rx="0.75"
+                                                transform="translate(716.536 591) rotate(135)"
+                                                fill="#ea4335"></rect>
+                                            <rect id="Rectangle_19051" data-name="Rectangle 19051"
+                                                width="8" height="1.5" rx="0.75"
+                                                transform="translate(708 590.25)" fill="#ea4335"></rect>
+                                        </g>
+                                    </g>
+                                </g>
+                            </svg>
+                        </div>
+                        <p class="ml-2 mb-0 fs-7 fw-500" style="color: #666; line-height: 18px;">
+                            During the installation process, we will check if the files that are needed to
+                            be written (.env file) have write permission. We will also check if curl are
+                            enabled on your server or not.
+                        </p>
+                    </div>
 
-
-                 <div class="d-flex mt-3">
-                     <div class="me-2">
-                         <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
-                             viewBox="0 0 16 16">
-                             <g id="Group_22706" data-name="Group 22706"
-                                 transform="translate(-704 -571)">
-                                 <g id="Rectangle_19036" data-name="Rectangle 19036"
-                                     transform="translate(704 571)" fill="#fff" stroke="#ea4335"
-                                     stroke-width="1">
-                                     <rect width="16" height="16" rx="8" stroke="none">
-                                     </rect>
-                                     <rect x="0.5" y="0.5" width="15" height="15" rx="7.5"
-                                         fill="none"></rect>
-                                 </g>
-                                 <g id="Group_22693" data-name="Group 22693"
-                                     transform="translate(0 -12)">
-                                     <g id="Group_22698" data-name="Group 22698">
-                                         <rect id="Rectangle_19044" data-name="Rectangle 19044"
-                                             width="1.5" height="5" rx="0.75"
-                                             transform="translate(715.475 589.939) rotate(45)"
-                                             fill="#ea4335"></rect>
-                                         <rect id="Rectangle_19111" data-name="Rectangle 19111"
-                                             width="1.5" height="5" rx="0.75"
-                                             transform="translate(716.536 591) rotate(135)"
-                                             fill="#ea4335"></rect>
-                                         <rect id="Rectangle_19051" data-name="Rectangle 19051"
-                                             width="8" height="1.5" rx="0.75"
-                                             transform="translate(708 590.25)" fill="#ea4335"></rect>
-                                     </g>
-                                 </g>
-                             </g>
-                         </svg>
-                     </div>
-                     <p class="ml-2 mb-0 fs-7 fw-500" style="color: #666; line-height: 18px;">
-                         During the installation process, we will check if the files that are needed to
-                         be written (.env file) have write permission. We will also check if curl are
-                         enabled on your server or not.
-                     </p>
-                 </div>
-
-                 <div class="my-4 py-4 absolute-bottom-left right-0 d-flex justify-content-center">
-                     <button onclick='verifyPurchase(`{{ route("installer.verify-perchase") }}`, "form_{{ $finalForm - 1 }}")' type="button" class="btn btn-install text-uppercase">Verify Purchase</button>
-                 </div>
-             </form>
-         @endif
-         {{-- verify purchase code process end here --}}
+                    <div class="my-4 py-4 absolute-bottom-left right-0 d-flex justify-content-center">
+                        <button onclick='verifyPurchase(`{{ route("installer.verify-perchase") }}`, "form_{{ ($finalForm - 1) }}")' type="button" class="btn btn-install text-uppercase">Verify Purchase</button>
+                    </div>
+                </form>
+            @endif
+            {{-- verify purchase code process end here --}}
 
             {{-- Final Submission here star --}}
             <span id="form_{{ $finalForm }}" style="display: none">
@@ -252,12 +248,15 @@
         </div>
     </div>
 </div>
+<input type="hidden" value="{{ csrf_token() }}" id="csrf_tokon">
 @endsection
 
 @push('scripts')
     <script>
         const finalUrl = "{{ route('installer.app.final-install') }}"
         const csrfUrl = "{{ route('installer.new-csrf') }}"
+        const purchaseEnable = "{{ config('installer.verify_purchase') }}"
+        const lastForm = "{{ count($environmentFields) }}"
 
         const Toast = Swal.mixin({
         toast: true,
@@ -280,6 +279,7 @@
             let currentForm = document.getElementById(formId)
             let nextForm = document.getElementById(nextId)
             let loader = document.getElementById('loader');
+            let csrfToken = $('#csrf_tokon').val()
 
             loader.style.display = 'flex'
             $.ajax({
@@ -287,9 +287,11 @@
                 type : "POST",
                 dataType : "json",
                 data: formData,
+                headers: {
+                    'X-CSRF-Token': csrfToken
+                },
                 success:function(data)
                 {
-                    setNewToken()
                     loader.style.display = 'none'
                     if(data.status == 400){
                         Swal.fire({
@@ -301,6 +303,7 @@
                     }
 
                     if(data.status == 200){
+                        setNewToken()
                         Toast.fire({
                             icon: "success",
                             title: "The environment setup is successful."
@@ -330,18 +333,21 @@
         }
 
         function verifyPurchase(url, formId){
-
             let formData = $('#' + formId).serializeArray().reduce(function(obj, item) {
                 obj[item.name] = item.value;
                 return obj;
             }, {});
 
+            let csrfToken = $('#csrf_tokon').val()
             loader.style.display = 'flex'
             $.ajax({
                 url : url,
                 type : "POST",
                 dataType : "json",
                 date: formData,
+                headers: {
+                    'X-CSRF-Token': csrfToken
+                },
                 success:function(data)
                 {
                     // Swal.fire({
@@ -357,14 +363,14 @@
                     // });
                 },
                 error:function(jqXHR, textStatus, errorThrown) {
-                    let error = JSON.parse(jqXHR.responseText)
-                    Swal.fire({
-                        title: 'Something went wrong!',
-                        text: error.message,
-                        icon: 'error',
-                        confirmButtonText: 'Try Again'
-                    })
-                    loader.style.display = 'none'
+                    // let error = JSON.parse(jqXHR.responseText)
+                    // Swal.fire({
+                    //     title: 'Something went wrong!',
+                    //     text: error.message,
+                    //     icon: 'error',
+                    //     confirmButtonText: 'Try Again'
+                    // })
+                    // loader.style.display = 'none'
                 }
             })
         }
@@ -411,7 +417,8 @@
                 dataType : "json",
                 success:function(data)
                 {
-                    $("input[name='_token']").val(data.token);
+                    let tokenInput = document.getElementById('csrf_tokon');
+                    tokenInput.value = data.token
                 }
             })
         }
