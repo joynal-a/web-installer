@@ -145,9 +145,10 @@
                     </div>
 
                     <div class="my-4 py-4 absolute-bottom-left right-0 d-flex justify-content-center">
-                        <button onclick='verifyPurchase(`{{ route("installer.verify-perchase") }}`, "form_{{ ($finalForm - 1) }}")' type="button" class="btn btn-install text-uppercase">Verify Purchase</button>
+                        <button onclick='verifyPurchase(`{{ route("installer.verify-perchase") }}`, "form_{{ ($finalForm - 1) }}", "form_{{ $finalForm }}")' type="button" class="btn btn-install text-uppercase">Verify Purchase</button>
                     </div>
                 </form>
+                
             @endif
             {{-- verify purchase code process end here --}}
 
@@ -332,45 +333,62 @@
             });
         }
 
-        function verifyPurchase(url, formId){
+        function verifyPurchase(url, formId, nextId){
             let formData = $('#' + formId).serializeArray().reduce(function(obj, item) {
                 obj[item.name] = item.value;
                 return obj;
             }, {});
 
+            let currentForm = document.getElementById(formId)
+            let nextForm = document.getElementById(nextId)
+
+            console.log(formData);
             let csrfToken = $('#csrf_tokon').val()
             loader.style.display = 'flex'
             $.ajax({
                 url : url,
                 type : "POST",
                 dataType : "json",
-                date: formData,
+                data: formData,
                 headers: {
                     'X-CSRF-Token': csrfToken
                 },
                 success:function(data)
                 {
-                    // Swal.fire({
-                    //     title: 'Congratulation',
-                    //     text: 'Our Installation system is perfectly done please wait. You will be redirected within 10 seconds.',
-                    //     icon: 'success',
-                    //     timer: 5000,
-                    //     showConfirmButton: true,
-                    //     confirmButtonText: 'Click To Redirect',
-                    //     willClose: () => {
-                    //         window.location.href = '/';
-                    //     }
-                    // });
+                    loader.style.display = 'none'
+                    if(data.status === 422){
+                        Swal.fire({
+                            title: 'Wrong!',
+                            text: data.message,
+                            icon: 'error',
+                            confirmButtonText: 'Try Again'
+                        })
+                    }
+                    if(data.status === 200){
+                        Toast.fire({
+                            icon: "success",
+                            title: data.message
+                        });
+                        currentForm.style.display = 'none'
+                        nextForm.style.display = 'block'
+                    }
                 },
                 error:function(jqXHR, textStatus, errorThrown) {
-                    // let error = JSON.parse(jqXHR.responseText)
-                    // Swal.fire({
-                    //     title: 'Something went wrong!',
-                    //     text: error.message,
-                    //     icon: 'error',
-                    //     confirmButtonText: 'Try Again'
-                    // })
-                    // loader.style.display = 'none'
+                    console.log('ok');
+                    if (jqXHR.responseJSON && jqXHR.responseJSON.errors) {
+                        var errors = jqXHR.responseJSON.errors;
+                        // Loop through the errors and display them in your fields
+                        for (var field in errors) {
+                            if (errors.hasOwnProperty(field)) {
+                                $(`input[name="${field}"]`).addClass("is-invalid")
+                                $(`select[name="${field}"]`).addClass("is-invalid")
+
+                                var errorMessage = errors[field];
+                            }
+
+                        }
+                    }
+                    loader.style.display = 'none'
                 }
             })
         }

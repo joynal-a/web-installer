@@ -216,7 +216,8 @@ return [
     |--------------------------------------------------------------------------
     */
     'verify_purchase' => true,
-    'verify_code' => 'zCMtNHj9GCsdkTDtnpsFCjhhMHJ2WFZ4TE1RbkpNaGxJT2t4TVl1ZUhBRFR5RGJraW1JQkVTRUpEaTFxRGFyMWNHQkdHUWhMUkx3c0ZrS2U=',
+    'verify_code' => 'ZZ4Jm/5O2nnU2LSXEXfkTk9iN3IzcEErYm5JdzhzR1pJMFlNVURBenFzNDJoNUtGOVVicmVLVnkvN0RtS3drempnV3lNbG8wN1FtUy9oQW0=',
+    'validity_time' => 10, // in minutes
     'verify_rules' => [
         'email' => [
             'rule' => 'required|string',
@@ -229,6 +230,12 @@ return [
             'label' => 'Domain Name',
             'type' => 'text',
             'placeholder' => 'e.g: https://example.com'
+        ],
+        'username' => [
+            'rule' => 'required|string',
+            'label' => 'Username',
+            'type' => 'text',
+            'placeholder' => 'e.g: example'
         ],
         'purchase_code' => [
             'rule' => 'required|string',
