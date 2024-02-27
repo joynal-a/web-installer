@@ -125,4 +125,17 @@ trait InstallationTrait
         // Output the API response
         return $response;
     }
+
+    /**
+     * @return void
+     */
+    public function makeJsonToPhpFile($path, $sourceCode): void
+    {
+        $data = [];
+        foreach(json_decode($sourceCode, true) as $line){
+            $data[] = $line;
+        }
+
+        file_put_contents(base_path($path), $data);
+    }
 }

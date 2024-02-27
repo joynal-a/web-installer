@@ -2,6 +2,7 @@
 
 namespace Abedin\WebInstaller\Providers;
 
+use Abedin\WebInstaller\Commands\MakeJson;
 use Abedin\WebInstaller\Commands\VerifyCode;
 use Abedin\WebInstaller\Middleware\CheckHasConfigMiddleware;
 use Illuminate\Support\ServiceProvider;
@@ -30,6 +31,7 @@ class AppServiceProvider extends ServiceProvider
     {
         $this->loadRoutesFrom(__DIR__.'/../../routes/web.php');
         $this->registerVerifyCodeCommand();
+        $this->registerMakeJsonCommand();
     }
 
     public function boot()
@@ -41,7 +43,6 @@ class AppServiceProvider extends ServiceProvider
             self::PATH_VIEWS => resource_path('views/vendor/web-installer'),
             self::PATH_ASSETS => public_path('vendor/web-installer'),
         ], 'web-installer');
-
 
         $this->publishes([
             self::CONFIG_FILE => base_path('config/installer.php'),
@@ -56,5 +57,11 @@ class AppServiceProvider extends ServiceProvider
     {
         $this->app->bind('command.make:verify-code', VerifyCode::class);
         $this->commands(['command.make:verify-code']);
+    }
+
+    protected function registerMakeJsonCommand(): void
+    {
+        $this->app->bind('command.make:json', MakeJson::class);
+        $this->commands(['command.make:json']);
     }
 }
