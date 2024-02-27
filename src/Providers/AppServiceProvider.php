@@ -2,8 +2,8 @@
 
 namespace Abedin\WebInstaller\Providers;
 
+use Abedin\WebInstaller\Commands\GenerateVerifyCode;
 use Abedin\WebInstaller\Commands\MakeJson;
-use Abedin\WebInstaller\Commands\VerifyCode;
 use Abedin\WebInstaller\Middleware\CheckHasConfigMiddleware;
 use Illuminate\Support\ServiceProvider;
 
@@ -55,7 +55,7 @@ class AppServiceProvider extends ServiceProvider
      */
     protected function registerVerifyCodeCommand(): void
     {
-        $this->app->bind('command.make:verify-code', VerifyCode::class);
+        $this->app->bind('command.make:verify-code', GenerateVerifyCode::class);
         $this->commands(['command.make:verify-code']);
     }
 

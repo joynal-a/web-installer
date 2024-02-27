@@ -707,12 +707,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/illuminate/support.git",
-                "reference": "5318a0c96d16a57f444fc61066d02c04da9949fb"
+                "reference": "96d4512df39bee8cb60d50783f944a48242ea862"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/illuminate/support/zipball/5318a0c96d16a57f444fc61066d02c04da9949fb",
-                "reference": "5318a0c96d16a57f444fc61066d02c04da9949fb",
+                "url": "https://api.github.com/repos/illuminate/support/zipball/96d4512df39bee8cb60d50783f944a48242ea862",
+                "reference": "96d4512df39bee8cb60d50783f944a48242ea862",
                 "shasum": ""
             },
             "require": {
@@ -770,7 +770,7 @@
                 "issues": "https://github.com/laravel/framework/issues",
                 "source": "https://github.com/laravel/framework"
             },
-            "time": "2024-02-22T14:52:40+00:00"
+            "time": "2024-02-26T22:20:06+00:00"
         },
         {
             "name": "illuminate/view",
@@ -2910,12 +2910,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/sebastianbergmann/phpunit.git",
-                "reference": "be83252a8861179636483fe2a7db7b03a99b6766"
+                "reference": "8d675f8edf9de03224da01da5945457b5202bde6"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/sebastianbergmann/phpunit/zipball/be83252a8861179636483fe2a7db7b03a99b6766",
-                "reference": "be83252a8861179636483fe2a7db7b03a99b6766",
+                "url": "https://api.github.com/repos/sebastianbergmann/phpunit/zipball/8d675f8edf9de03224da01da5945457b5202bde6",
+                "reference": "8d675f8edf9de03224da01da5945457b5202bde6",
                 "shasum": ""
             },
             "require": {
@@ -3003,7 +3003,7 @@
                     "type": "tidelift"
                 }
             ],
-            "time": "2024-02-25T06:51:46+00:00"
+            "time": "2024-02-27T07:48:45+00:00"
         },
         {
             "name": "sebastian/cli-parser",

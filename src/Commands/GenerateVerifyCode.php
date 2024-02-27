@@ -4,7 +4,7 @@ namespace Abedin\WebInstaller\Commands;
 
 use Illuminate\Console\Command;
 
-class VerifyCode extends Command
+class GenerateVerifyCode extends Command
 {
     /**
      * The name and signature of the console command.
