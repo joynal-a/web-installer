@@ -35,8 +35,6 @@ class MakeJson extends Command
             }
 
             $converJson = json_encode($data, JSON_PRETTY_PRINT);
-            $converJson = str_replace('[', '{', $converJson);
-            $converJson = str_replace(']', '}', $converJson);
 
             $dir = str_replace('.php', '.json', $dir);
             file_put_contents($dir, $converJson);
