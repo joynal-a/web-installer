@@ -215,9 +215,9 @@ return [
     | set a verification code for active from market
     |--------------------------------------------------------------------------
     */
+    'product' => '', //which product you verify same as supported server
+    'verify_code' => '',
     'verify_purchase' => true,
-    'verify_code' => 'ZZ4Jm/5O2nnU2LSXEXfkTk9iN3IzcEErYm5JdzhzR1pJMFlNVURBenFzNDJoNUtGOVVicmVLVnkvN0RtS3drempnV3lNbG8wN1FtUy9oQW0=',
-    'validity_time' => 10, // in minutes
     'verify_rules' => [
         'email' => [
             'rule' => 'required|string',
