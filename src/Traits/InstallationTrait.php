@@ -87,11 +87,6 @@ trait InstallationTrait
         file_put_contents($path, $signature);
     }
 
-    public function readytoImportMigration()
-    {
-
-    }
-
     private function decrypt($encryptedCode, $key): string|bool
     {
         $data = base64_decode($encryptedCode);
