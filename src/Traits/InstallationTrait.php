@@ -74,7 +74,7 @@ trait InstallationTrait
     {
         $outputLog = new BufferedOutput;
         Artisan::call('migrate:fresh', ['--force' => true], $outputLog);
-
+        Artisan::call('storage:link', ['--force' => true]);
         if(config('installer.seeder_run')){
             Artisan::call('db:seed', ['--force' => true], $outputLog);
         }
