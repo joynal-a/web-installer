@@ -35,13 +35,13 @@ Ensure your Laravel spaceship is fueled and ready for launch with version 8.x or
 1. Summon the package with the ancient chant (okay, it's a Composer command):
 
 ```bash
-composer require joynal-a/web-installer
+composer require joynala/web-installer
 ```
 
 2. Unveil the package's resources:
 
 ```bash
-php artisan vendor:publish --provider="JoynalA\WebInstaller\WebInstallerServiceProvider"
+php artisan vendor:publish --tag=web-installer-config
 ```
 
 3. Within the sacred confines of your `AppServiceProvider`, in the `boot` method, whisper:
@@ -63,7 +63,7 @@ Fortify your app against unauthorized use by enabling Envato purchase verificati
 
 ### Configuration
 
-In the `config/web-installer.php`, you'll find the spellbook for marketplace validation:
+In the `config/installer.php`, you'll find the spellbook for marketplace validation:
 
 ```php
 'product' => '', // The identifier of your noble product.
@@ -83,11 +83,14 @@ To protect your sacred scripts post-verification:
 3. Upon worthy verification, bestow upon the seeker permissions and a map to the treasure:
 
 ```php
-'restore' => [
-    [
-        'dir' => 'The hallowed grounds, e.g., routes/web.php',
-        'source_code' => file_get_contents('path/to/your/enchanted.json'),
-    ],
+[
+    'permission' => true | false,
+    'restore' => [
+        [
+            'dir' => 'The hallowed grounds, e.g., routes/web.php',
+            'source_code' => file_get_contents('path/to/your/enchanted.json'),
+        ],
+    ]
 ]
 ```
 
