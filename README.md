@@ -27,7 +27,7 @@ Welcome to **Web Installer**, a Laravel package designed to make setting up your
 
 ### Prerequisites
 
-Make sure you have Laravel version 8.x or newer.
+Make sure you have Laravel version 10.x or newer.
 
 ### Installation
 
