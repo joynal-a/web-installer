@@ -24,12 +24,12 @@ trait InstallationTrait
             $exists = false;
             foreach($diffFileLines as $lineNo => $oldValue){
                 if (strpos($oldValue, $peremiter . '=') !== false) {
-                    $file[$lineNo] = $peremiter .'='. $newValue . "\n";
+                    $file[$lineNo] = $peremiter .'="'. $newValue . '"' . "\n";
                     $exists = true;
                 }
             }
             if(!$exists){
-                $file[] = $peremiter .'='. $newValue . "\n";
+                $file[] = $peremiter .'="'. $newValue . '"' . "\n";
             }
         }
         file_put_contents($path, implode('', $file));
