@@ -88,9 +88,16 @@
                 </div>
 
                 <div class="my-4 py-4 absolute-bottom-left right-0 d-flex justify-content-center">
+                    {{-- @if (config('installer.verify_purchase'))
                     <a href="{{ route('updater.verify') }}" class="btn btn-install text-uppercase">
                         Start update Process
                     </a>
+                    @else --}}
+                    <a href="{{ route('updater.file-upload') }}" class="btn btn-install text-uppercase">
+                        Start update Process
+                    </a>
+                    {{-- @endif --}}
+
                 </div>
 
 

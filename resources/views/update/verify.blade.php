@@ -10,14 +10,14 @@
 
             <h2 class="text-center mt-3">Verify Your Purchase</h2>
             <p class="fs-7 text-center">
-                <strong class="text-danger">You will need to fill up the following mandatory items before proceeding.</strong>
+                <strong class="text-danger">You're all set, and now you can upgrade.</strong>
             </p>
 
             <div class="w-80 m-auto">
 
-             {{-- verify purchase code process start here --}}
-             @if (config('installer.verify_purchase'))
-                <form method="post" id="form_0" style="display:none">
+            {{-- verify purchase code process start here --}}
+            @if (config('installer.verify_purchase'))
+                <form method="post"  id="form_0">
                     @foreach ($verifyRules as $name => $verifyRule)
                     <div class="mb-3">
                         <label for="">{{ $verifyRule['label'] }}@if(substr($verifyRule['rule'], 0, 8) === 'required')<strong class="text-danger">*</strong>@endif</label>
@@ -33,90 +33,6 @@
             @endif
             {{-- verify purchase code process end here --}}
 
-            {{-- Final Submission here star --}}
-            <span id="form_1" style="display: none">
-                <div class="d-flex mt-3">
-                    <div class="me-2">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
-                            viewBox="0 0 16 16">
-                            <g id="Group_22706" data-name="Group 22706"
-                                transform="translate(-704 -571)">
-                                <g id="Rectangle_19036" data-name="Rectangle 19036"
-                                    transform="translate(704 571)" fill="#fff" stroke="#ea4335"
-                                    stroke-width="1">
-                                    <rect width="16" height="16" rx="8" stroke="none">
-                                    </rect>
-                                    <rect x="0.5" y="0.5" width="15" height="15" rx="7.5"
-                                        fill="none"></rect>
-                                </g>
-                                <g id="Group_22693" data-name="Group 22693"
-                                    transform="translate(0 -12)">
-                                    <g id="Group_22698" data-name="Group 22698">
-                                        <rect id="Rectangle_19044" data-name="Rectangle 19044"
-                                            width="1.5" height="5" rx="0.75"
-                                            transform="translate(715.475 589.939) rotate(45)"
-                                            fill="#ea4335"></rect>
-                                        <rect id="Rectangle_19111" data-name="Rectangle 19111"
-                                            width="1.5" height="5" rx="0.75"
-                                            transform="translate(716.536 591) rotate(135)"
-                                            fill="#ea4335"></rect>
-                                        <rect id="Rectangle_19051" data-name="Rectangle 19051"
-                                            width="8" height="1.5" rx="0.75"
-                                            transform="translate(708 590.25)" fill="#ea4335"></rect>
-                                    </g>
-                                </g>
-                            </g>
-                        </svg>
-                    </div>
-                    <p class="ml-2 mb-0 fs-7 fw-500" style="color: #666; line-height: 18px;">
-                        Congratulations, you have successfully stored all the necessary information in the .env file. This step is crucial for ensuring the proper functionality of the application, and you've completed it accurately.
-                    </p>
-                </div>
-
-                <div class="d-flex mt-3">
-                    <div class="me-2">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
-                            viewBox="0 0 16 16">
-                            <g id="Group_22706" data-name="Group 22706"
-                                transform="translate(-704 -571)">
-                                <g id="Rectangle_19036" data-name="Rectangle 19036"
-                                    transform="translate(704 571)" fill="#fff" stroke="#e6e6e6"
-                                    stroke-width="1">
-                                    <rect width="16" height="16" rx="8"
-                                        stroke="none"></rect>
-                                    <rect x="0.5" y="0.5" width="15" height="15"
-                                        rx="7.5" fill="none"></rect>
-                                </g>
-                                <g id="Group_22693" data-name="Group 22693"
-                                    transform="translate(0 -12)">
-                                    <g id="Group_22698" data-name="Group 22698">
-                                        <rect id="Rectangle_19044" data-name="Rectangle 19044"
-                                            width="1.5" height="5" rx="0.75"
-                                            transform="translate(715.475 589.939) rotate(45)"
-                                            fill="#007cff"></rect>
-                                        <rect id="Rectangle_19111" data-name="Rectangle 19111"
-                                            width="1.5" height="5" rx="0.75"
-                                            transform="translate(716.536 591) rotate(135)"
-                                            fill="#007cff"></rect>
-                                        <rect id="Rectangle_19051" data-name="Rectangle 19051"
-                                            width="8" height="1.5" rx="0.75"
-                                            transform="translate(708 590.25)" fill="#007cff"></rect>
-                                    </g>
-                                </g>
-                            </g>
-                        </svg>
-                    </div>
-                    <p class="ml-2 mb-0 fs-7 fw-500" style="color: #666; line-height: 18px;">
-                        You've reached the final step. Once you click on the final submission, your application will be activated, provided all the information is accurate.
-                    </p>
-                </div>
-
-                <div class="my-4 py-4 absolute-bottom-left right-0 d-flex justify-content-center">
-                    <button type="button" onclick="finalSubmit()" class="btn btn-install text-uppercase">Final Submission</button>
-                </div>
-            </span>
-            {{-- Final Submission here end --}}
-
             </div>
 
             <div class="row">
@@ -127,196 +43,59 @@
         </div>
     </div>
 </div>
-<input type="hidden" value="{{ csrf_token() }}" id="csrf_tokon">
 @endsection
 
 @push('scripts')
-    <script>
-        const finalUrl = "{{ route('installer.app.final-install') }}"
-        const csrfUrl = "{{ route('installer.new-csrf') }}"
-        const purchaseEnable = "{{ config('installer.verify_purchase') }}"
+<script>
+    const url = "{{ route('updater.file-update') }}"
+    function uploadFile(){
 
-        const Toast = Swal.mixin({
-            toast: true,
-            position: "top-end",
-            showConfirmButton: false,
-            timer: 3000,
-            timerProgressBar: true,
-            didOpen: (toast) => {
-                toast.onmouseenter = Swal.stopTimer;
-                toast.onmouseleave = Swal.resumeTimer;
-            }
-        });
+        // $.ajax({
+        //     url : url,
+        //     type : "POST",
+        //     dataType : "json",
+        //     data: formData,
+        //     headers: {
+        //         'X-CSRF-Token': csrfToken
+        //     },
+        //     success:function(data)
+        //     {
+        //         loader.style.display = 'none'
+        //         if(data.status === 422){
+        //             Swal.fire({
+        //                 title: 'Wrong!',
+        //                 text: data.message,
+        //                 icon: 'error',
+        //                 confirmButtonText: 'Try Again'
+        //             })
+        //         }
+        //         if(data.status === 200){
+        //             Toast.fire({
+        //                 icon: "success",
+        //                 title: data.message
+        //             });
+        //             currentForm.style.display = 'none'
+        //             nextForm.style.display = 'block'
+        //         }
+        //     },
+        //     error:function(jqXHR, textStatus, errorThrown) {
+        //         console.log('ok');
+        //         if (jqXHR.responseJSON && jqXHR.responseJSON.errors) {
+        //             var errors = jqXHR.responseJSON.errors;
+        //             // Loop through the errors and display them in your fields
+        //             for (var field in errors) {
+        //                 if (errors.hasOwnProperty(field)) {
+        //                     $(`input[name="${field}"]`).addClass("is-invalid")
+        //                     $(`select[name="${field}"]`).addClass("is-invalid")
 
-        function submitData(formId, nextId, url){
-            let formData = $('#' + formId).serializeArray().reduce(function(obj, item) {
-                obj[item.name] = item.value;
-                return obj;
-            }, {});
+        //                     var errorMessage = errors[field];
+        //                 }
 
-            let currentForm = document.getElementById(formId)
-            let nextForm = document.getElementById(nextId)
-            let loader = document.getElementById('loader');
-            let csrfToken = $('#csrf_tokon').val()
-
-            loader.style.display = 'flex'
-            $.ajax({
-                url : url,
-                type : "POST",
-                dataType : "json",
-                data: formData,
-                headers: {
-                    'X-CSRF-Token': csrfToken
-                },
-                success:function(data)
-                {
-                    loader.style.display = 'none'
-                    if(data.status == 400){
-                        Swal.fire({
-                            title: 'Wrong!',
-                            text: data.message,
-                            icon: 'error',
-                            confirmButtonText: 'Try Again'
-                        })
-                    }
-
-                    if(data.status == 200){
-                        setNewToken()
-                        Toast.fire({
-                            icon: "success",
-                            title: "The environment setup is successful."
-                        });
-                        currentForm.style.display = 'none'
-                        nextForm.style.display = 'block'
-                    }
-                },
-                error:function(jqXHR, textStatus, errorThrown) {
-                    // Check if the server returned a JSON response
-                    if (jqXHR.responseJSON && jqXHR.responseJSON.errors) {
-                        var errors = jqXHR.responseJSON.errors;
-                        // Loop through the errors and display them in your fields
-                        for (var field in errors) {
-                            if (errors.hasOwnProperty(field)) {
-                                $(`input[name="${field}"]`).addClass("is-invalid")
-                                $(`select[name="${field}"]`).addClass("is-invalid")
-
-                                var errorMessage = errors[field];
-                            }
-
-                        }
-                    }
-                    loader.style.display = 'none'
-                }
-            });
-        }
-
-        function verifyPurchase(url, formId, nextId){
-            let formData = $('#' + formId).serializeArray().reduce(function(obj, item) {
-                obj[item.name] = item.value;
-                return obj;
-            }, {});
-
-            let currentForm = document.getElementById(formId)
-            let nextForm = document.getElementById(nextId)
-
-            console.log(formData);
-            let csrfToken = $('#csrf_tokon').val()
-            loader.style.display = 'flex'
-            $.ajax({
-                url : url,
-                type : "POST",
-                dataType : "json",
-                data: formData,
-                headers: {
-                    'X-CSRF-Token': csrfToken
-                },
-                success:function(data)
-                {
-                    loader.style.display = 'none'
-                    if(data.status === 422){
-                        Swal.fire({
-                            title: 'Wrong!',
-                            text: data.message,
-                            icon: 'error',
-                            confirmButtonText: 'Try Again'
-                        })
-                    }
-                    if(data.status === 200){
-                        Toast.fire({
-                            icon: "success",
-                            title: data.message
-                        });
-                        currentForm.style.display = 'none'
-                        nextForm.style.display = 'block'
-                    }
-                },
-                error:function(jqXHR, textStatus, errorThrown) {
-                    console.log('ok');
-                    if (jqXHR.responseJSON && jqXHR.responseJSON.errors) {
-                        var errors = jqXHR.responseJSON.errors;
-                        // Loop through the errors and display them in your fields
-                        for (var field in errors) {
-                            if (errors.hasOwnProperty(field)) {
-                                $(`input[name="${field}"]`).addClass("is-invalid")
-                                $(`select[name="${field}"]`).addClass("is-invalid")
-
-                                var errorMessage = errors[field];
-                            }
-
-                        }
-                    }
-                    loader.style.display = 'none'
-                }
-            })
-        }
-
-        function finalSubmit(){
-            loader.style.display = 'flex'
-            $.ajax({
-                url : finalUrl,
-                type : "GET",
-                dataType : "json",
-                success:function(data)
-                {
-                    document.getElementById('mainCard').remove()
-                    Swal.fire({
-                        title: 'Congratulation',
-                        text: 'Our Installation system is perfectly done please wait. You will be redirected within 10 seconds.',
-                        icon: 'success',
-                        timer: 5000,
-                        showConfirmButton: true,
-                        confirmButtonText: 'Click To Redirect',
-                        willClose: () => {
-                            window.location.href = '/';
-                        }
-                    });
-                },
-                error:function(jqXHR, textStatus, errorThrown) {
-                    let error = JSON.parse(jqXHR.responseText)
-                    console.log(error);
-                    Swal.fire({
-                        title: 'Something went wrong!',
-                        text: error.message,
-                        icon: 'error',
-                        confirmButtonText: 'Try Again'
-                    })
-                    loader.style.display = 'none'
-                }
-            })
-        }
-
-        function setNewToken(){
-            $.ajax({
-                url : csrfUrl,
-                type : "GET",
-                dataType : "json",
-                success:function(data)
-                {
-                    let tokenInput = document.getElementById('csrf_tokon');
-                    tokenInput.value = data.token
-                }
-            })
-        }
-
-    </script>
+        //             }
+        //         }
+        //         loader.style.display = 'none'
+        //     }
+        // })
+    }
+</script>
 @endpush
