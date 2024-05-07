@@ -5,6 +5,7 @@ namespace Abedin\WebInstaller\Controllers;
 use Abedin\WebInstaller\Traits\InstallationTrait;
 use Abedin\WebInstaller\Traits\UpdateTrait;
 use Exception;
+use Illuminate\Support\Facades\Artisan;
 use Illuminate\Http\Request;
 
 class UpdateController extends Controller
@@ -109,8 +110,11 @@ class UpdateController extends Controller
 
             }
         }
-        return;
 
+        Artisan::call('migrate:fresh', ['--force' => true]);
+        shell_exec('composer update');
+
+        return;
     }
 }
 
