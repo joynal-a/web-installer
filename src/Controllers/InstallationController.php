@@ -51,7 +51,7 @@ class InstallationController extends Controller
         ]);
     }
 
-    public function purchaseVery(Request $request)
+    public function purchaseVerify(Request $request)
     {
         $formInfos = config('installer.verify_rules');
         $rules = [];
