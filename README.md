@@ -82,15 +82,24 @@ To protect your sacred scripts post-verification:
 2. Hide this tome within the secure vaults of your support server.
 3. Upon worthy verification, bestow upon the seeker permissions and a map to the treasure:
 
+- the response for 200 status
 ```php
 [
-    'permission' => true | false,
+    'permission' => true,
     'restore' => [
         [
             'dir' => 'The hallowed grounds, e.g., routes/web.php',
             'source_code' => file_get_contents('path/to/your/enchanted.json'),
         ],
     ]
+]
+```
+
+- the response for 422 status
+```php
+[
+    'permission' => false,
+    'message' => 'You provide a wrong purchase code.'
 ]
 ```
 

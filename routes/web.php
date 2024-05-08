@@ -42,8 +42,8 @@ Route::group(['prefix' => 'update', 'as' => 'updater.', 'middleware' => ['web']]
     // requirement check page routes here
     Route::controller(UpdateController::class)->group(function(){
         Route::get('/', 'index')->name('index');
-        // Route::get('/verify-purchase-form', 'verifyForm')->name('verify');
-        // Route::post('/verify-purchase', 'purchaseVerify')->name('purcgase-verify');
+        Route::get('/verify-purchase-form', 'verifyForm')->name('verify');
+        Route::post('/verify-purchase', 'purchaseVerify')->name('purcgase-verify');
 
         Route::get('/upload-file', 'uploadFile')->name('file-upload');
         Route::post('/update-file', 'updateFile')->name('file-update');

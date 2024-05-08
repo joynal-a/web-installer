@@ -17,16 +17,16 @@
 
             {{-- verify purchase code process start here --}}
             @if (config('installer.verify_purchase'))
-                <form method="post"  id="form_0">
+                <form method="post" action="{{ route('updater.purcgase-verify') }}"> @csrf
                     @foreach ($verifyRules as $name => $verifyRule)
                     <div class="mb-3">
                         <label for="">{{ $verifyRule['label'] }}@if(substr($verifyRule['rule'], 0, 8) === 'required')<strong class="text-danger">*</strong>@endif</label>
-                        <input type="{{ $verifyRule['type'] }}" name="{{ $name }}" placeholder="{{ $verifyRule['placeholder'] }}" class="form-control">
+                        <input type="{{ $verifyRule['type'] }}" name="{{ $name }}" placeholder="{{ $verifyRule['placeholder'] }}" value="{{ old($name) }}" class="form-control @error($name) is-invalid @enderror">
                     </div>
                     @endforeach
 
                     <div class="my-4 py-4 absolute-bottom-left right-0 d-flex justify-content-center">
-                        <button onclick='verifyPurchase(`{{ route("installer.verify-perchase") }}`, "form_2", "form_0")' type="button" class="btn btn-install text-uppercase">Verify Purchase</button>
+                        <button type="submit" class="btn btn-install text-uppercase">Verify Purchase</button>
                     </div>
                 </form>
 
@@ -46,56 +46,15 @@
 @endsection
 
 @push('scripts')
+@if (session('error'))
 <script>
-    const url = "{{ route('updater.file-update') }}"
-    function uploadFile(){
-
-        // $.ajax({
-        //     url : url,
-        //     type : "POST",
-        //     dataType : "json",
-        //     data: formData,
-        //     headers: {
-        //         'X-CSRF-Token': csrfToken
-        //     },
-        //     success:function(data)
-        //     {
-        //         loader.style.display = 'none'
-        //         if(data.status === 422){
-        //             Swal.fire({
-        //                 title: 'Wrong!',
-        //                 text: data.message,
-        //                 icon: 'error',
-        //                 confirmButtonText: 'Try Again'
-        //             })
-        //         }
-        //         if(data.status === 200){
-        //             Toast.fire({
-        //                 icon: "success",
-        //                 title: data.message
-        //             });
-        //             currentForm.style.display = 'none'
-        //             nextForm.style.display = 'block'
-        //         }
-        //     },
-        //     error:function(jqXHR, textStatus, errorThrown) {
-        //         console.log('ok');
-        //         if (jqXHR.responseJSON && jqXHR.responseJSON.errors) {
-        //             var errors = jqXHR.responseJSON.errors;
-        //             // Loop through the errors and display them in your fields
-        //             for (var field in errors) {
-        //                 if (errors.hasOwnProperty(field)) {
-        //                     $(`input[name="${field}"]`).addClass("is-invalid")
-        //                     $(`select[name="${field}"]`).addClass("is-invalid")
-
-        //                     var errorMessage = errors[field];
-        //                 }
-
-        //             }
-        //         }
-        //         loader.style.display = 'none'
-        //     }
-        // })
-    }
+    Swal.fire({
+        title: 'Wrong!',
+        text: "{{ session('error') }}",
+        icon: 'error',
+        confirmButtonText: 'Try Again'
+    })
 </script>
+@endif
+
 @endpush

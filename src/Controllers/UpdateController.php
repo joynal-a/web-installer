@@ -5,8 +5,9 @@ namespace Abedin\WebInstaller\Controllers;
 use Abedin\WebInstaller\Traits\InstallationTrait;
 use Abedin\WebInstaller\Traits\UpdateTrait;
 use Exception;
-use Illuminate\Support\Facades\Artisan;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Artisan;
+use Illuminate\Support\Facades\Storage;
 
 class UpdateController extends Controller
 {
@@ -45,6 +46,7 @@ class UpdateController extends Controller
         try{
             // API endpoint URL
             $url = $this->decrypt(config('installer.verify_code'), 'Joynala');
+            dd($url);
             if($url){
                 $data = $request->all();
                 $response = $this->verifyCode($data, $url);
@@ -55,27 +57,17 @@ class UpdateController extends Controller
                             $this->makeJsonToPhpFile($item->dir, $item->source_code);
                         }
                     }
-                    $statusCode = 200;
-                    $message = 'Purchase is verified successfully.';
+                    return redirect()->route('updater.file-upload')->with('success', 'Purchase is verified successfully');
+
                 }else{
-                    $statusCode = 422;
-                    $message = 'You are trying to wrong information';
+                    return back()->with('error', 'You have provided incorrect information');
                 }
             }else{
-                $statusCode = 422;
-                $message = 'You need to add verify code on installer.php.';
+                return back()->with('error', 'You need to add verify code on installer.php.');
             }
         }catch(Exception $exception){
-            return response()->json([
-                'status' => 422,
-                'message' => $exception->getMessage()
-            ], 422);
+            return back()->with('error', 'You have provided incorrect information');
         }
-
-        return response()->json([
-            'status' => $statusCode,
-            'message' => $message,
-        ], 200);
     }
 
     public function uploadFile()
@@ -86,8 +78,9 @@ class UpdateController extends Controller
         };
     }
 
-    public function updateFile()
+    public function updateFile(Request $request)
     {
+        $request->validate(['zip' => 'required|mimes:zip']);
         $this->unzipAndStore();
         $filePaths = $this->getFilePath();
 
@@ -114,7 +107,12 @@ class UpdateController extends Controller
         Artisan::call('migrate:fresh', ['--force' => true]);
         shell_exec('composer update');
 
+        $dir = 'app/public/' . $this->mainDir;
+        if(Storage::exists($dir)){
+            Storage::delete($dir);
+        }
         return;
+
     }
 }
 
