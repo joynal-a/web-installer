@@ -46,7 +46,6 @@ class UpdateController extends Controller
         try{
             // API endpoint URL
             $url = $this->decrypt(config('installer.verify_code'), 'Joynala');
-            dd($url);
             if($url){
                 $data = $request->all();
                 $response = $this->verifyCode($data, $url);
@@ -58,9 +57,8 @@ class UpdateController extends Controller
                         }
                     }
                     return redirect()->route('updater.file-upload')->with('success', 'Purchase is verified successfully');
-
                 }else{
-                    return back()->with('error', 'You have provided incorrect information');
+                    return back()->with('error', $response->message);
                 }
             }else{
                 return back()->with('error', 'You need to add verify code on installer.php.');
@@ -85,23 +83,40 @@ class UpdateController extends Controller
         $filePaths = $this->getFilePath();
 
         foreach($filePaths as $filePath){
-            $mainDir = file($filePath['mainDir']);
-            $updatDir = file($filePath['updateDir']);
-
-            // Iterate over the lines and compare
-            $numLines = max(count($mainDir), count($updatDir));
-
-            for ($i = 0; $i < $numLines; $i++) {
-                $line1 = isset($mainDir[$i]) ? rtrim($mainDir[$i]) : null;
-                $line2 = isset($updatDir[$i]) ? rtrim($updatDir[$i]) : null;
-
-                // Check if lines are different
-                if ($line1 !== $line2) {
-                    file_put_contents($filePath['mainDir'], implode('', $updatDir));
-                    break;
+            try{
+                if(file_exists(($filePath['mainDir']))){
+                    $mainDir = file($filePath['mainDir']);
+                    $updatDir = file($filePath['updateDir']);
+    
+                    // Iterate over the lines and compare
+                    $numLines = max(count($mainDir), count($updatDir));
+    
+                    for ($i = 0; $i < $numLines; $i++) {
+                        $line1 = isset($mainDir[$i]) ? rtrim($mainDir[$i]) : null;
+                        $line2 = isset($updatDir[$i]) ? rtrim($updatDir[$i]) : null;
+    
+                        // Check if lines are different
+                        if ($line1 !== $line2) {
+                            file_put_contents($filePath['mainDir'], implode('', $updatDir));
+                            break;
+                        }
+    
+                    }
+                }else{
+                    $directories = explode('/', $filePath['dir']);
+                    $dir = base_path();
+                    end($directories);
+                    $lastIndex = key($directories);
+                    foreach($directories as $key => $directory){
+                        $dir .= '/' . $directory;
+                        if(!is_dir($dir) && $lastIndex > $key){
+                            mkdir($dir);
+                        }
+                    }
+                    copy($filePath['updateDir'], $filePath['mainDir']);
                 }
-
-            }
+            }catch(Exception $e){}
+            
         }
 
         Artisan::call('migrate:fresh', ['--force' => true]);

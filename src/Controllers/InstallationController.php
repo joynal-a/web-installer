@@ -77,7 +77,7 @@ class InstallationController extends Controller
                     $message = 'Purchase is verified successfully.';
                 }else{
                     $statusCode = 422;
-                    $message = 'Something went wrong.';
+                    $message = $response->message;
                 }
             }else{
                 $statusCode = 422;

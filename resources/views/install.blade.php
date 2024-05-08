@@ -329,7 +329,6 @@
                     }
                 },
                 error:function(jqXHR, textStatus, errorThrown) {
-                    console.log('ok');
                     if (jqXHR.responseJSON && jqXHR.responseJSON.errors) {
                         var errors = jqXHR.responseJSON.errors;
                         // Loop through the errors and display them in your fields

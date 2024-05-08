@@ -50,16 +50,11 @@ trait UpdateTrait
         $existsdir = array_diff($directory, $this->ignoreFiles);
 
         foreach($existsdir as $dirOrFile){
-            if (
-                strpos($dirOrFile, '.php') !== false ||
-                strpos($dirOrFile, '.json') !== false ||
-                strpos($dirOrFile, '.css') !== false ||
-                strpos($dirOrFile, '.js') !== false
-            ) {
-                $this->filePath[] = $destination .'/'. $dirOrFile;
-            } else {
-                $dir = $destination . '/' . $dirOrFile;
+            $dir = $destination .'/'. $dirOrFile;
+            if (is_dir($dir)) {
                 $this->firstScan($dir);
+            } else {
+                $this->filePath[] = $dir;
             }
         }
 
@@ -73,6 +68,7 @@ trait UpdateTrait
             $divide = explode($this->mainDir, $path);
 
             $data[] = [
+                'dir' => $divide[1],
                 'mainDir' => base_path($divide[1]),
                 'updateDir' => $path
             ];
@@ -85,15 +81,11 @@ trait UpdateTrait
         $directory = scandir($dir);
         $existsdir = array_diff($directory, $this->ignoreFiles);
         foreach($existsdir as $dirOrFile){
-            if (
-                strpos($dirOrFile, '.php') !== false ||
-                strpos($dirOrFile, '.json') !== false ||
-                strpos($dirOrFile, '.css') !== false ||
-                strpos($dirOrFile, '.js') !== false
-            ) {
-                $this->filePath[] = $dir .'/'. $dirOrFile;
+            $path = $dir .'/'. $dirOrFile;
+            if (is_dir($path)) {
+                $this->secondScan($path);
             } else {
-                $this->secondScan($dir .'/'. $dirOrFile);
+                $this->filePath[] = $path;
             }
         }
     }
@@ -103,15 +95,11 @@ trait UpdateTrait
         $directory = scandir($dir);
         $existsdir = array_diff($directory, $this->ignoreFiles);
         foreach($existsdir as $dirOrFile){
-            if (
-                strpos($dirOrFile, '.php') !== false ||
-                strpos($dirOrFile, '.json') !== false ||
-                strpos($dirOrFile, '.css') !== false ||
-                strpos($dirOrFile, '.js') !== false
-            ) {
-                $this->filePath[] = $dir .'/'. $dirOrFile;
+            $path = $dir .'/'. $dirOrFile;
+            if (is_dir($path)) {
+                $this->firstScan($path);
             } else {
-                $this->firstScan($dir .'/'. $dirOrFile);
+                $this->filePath[] = $path;
             }
         }
     }
