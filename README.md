@@ -81,15 +81,24 @@ After checking:
 2. Store this file on your secure server.
 3. Give users access and directions after they pass the check:
 
+- the response for 200 status
 ```php
 [
-    'permission' => true | false,
+    'permission' => true,
     'restore' => [
         [
             'dir' => 'e.g., routes/web.php',
             'source_code' => file_get_contents('path/to/your/json'),
         ],
     ]
+]
+```
+
+- the response for 422 status
+```php
+[
+    'permission' => false,
+    'message' => 'You provide a wrong purchase code.'
 ]
 ```
 
