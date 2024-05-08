@@ -54,7 +54,7 @@ trait UpdateTrait
             if (is_dir($dir)) {
                 $this->firstScan($dir);
             } else {
-                if($dirOrFile != 'AppServiceProvider.php' || $dirOrFile != 'RouteServiceProvider.php'){
+                if($dirOrFile != 'AppServiceProvider.php' && $dirOrFile != 'RouteServiceProvider.php'){
                     $this->filePath[] = $dir;
                 }
             }
@@ -87,7 +87,7 @@ trait UpdateTrait
             if (is_dir($path)) {
                 $this->secondScan($path);
             } else {
-                if($dirOrFile != 'AppServiceProvider.php' || $dirOrFile != 'RouteServiceProvider.php'){
+                if($dirOrFile != 'AppServiceProvider.php' && $dirOrFile != 'RouteServiceProvider.php'){
                     $this->filePath[] = $path;
                 }
             }
@@ -103,7 +103,7 @@ trait UpdateTrait
             if (is_dir($path)) {
                 $this->firstScan($path);
             } else {
-                if($dirOrFile != 'AppServiceProvider.php' || $dirOrFile != 'RouteServiceProvider.php'){
+                if($dirOrFile != 'AppServiceProvider.php' && $dirOrFile != 'RouteServiceProvider.php'){
                     $this->filePath[] = $path;
                 }
             }

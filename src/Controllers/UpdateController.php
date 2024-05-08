@@ -119,7 +119,7 @@ class UpdateController extends Controller
             
         }
 
-        Artisan::call('migrate:fresh', ['--force' => true]);
+        Artisan::call('migrate', ['--force' => true]);
         shell_exec('composer update');
 
         $dir = 'app/public/' . $this->mainDir;
