@@ -63,6 +63,18 @@ trait UpdateTrait
         return $this->dividePath();
     }
 
+    /**
+     * @return void
+     * Note: This method is only for additonal commands.
+     */
+    public function runAditionalCommands(): void
+    {
+        $commands = config('installer.update_commands');
+        foreach($commands as $command){
+            shell_exec($command);
+        }
+    }
+
     private function dividePath(): array
     {
         $data = [];

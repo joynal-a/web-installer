@@ -102,6 +102,7 @@ class InstallationController extends Controller
         try {
             $this->getReadyToRun();
             $this->createInstalationFile();
+            $this->runAditionalCommands();
         } catch (Exception $e) {
             return response()->json([
                 'status' => 422,
