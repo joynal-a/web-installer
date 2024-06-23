@@ -243,6 +243,25 @@ return [
             'type' => 'text',
             'placeholder' => 'e.g: 040afd3f-4cxa-4241-9e70-4gde9e4t674b'
         ],
-    ]
+    ],
 
+    /*
+    |--------------------------------------------------------------------------
+    | Install commands
+    | defind your installation commands
+    |--------------------------------------------------------------------------
+    */
+    'install_commands' => [
+        'composer update'
+    ],
+
+    /*
+    |--------------------------------------------------------------------------
+    | Update commands
+    | defind your update commands
+    |--------------------------------------------------------------------------
+    */
+    'update_commands' => [
+        'composer update'
+    ],
 ];
