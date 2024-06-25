@@ -123,8 +123,8 @@ class UpdateController extends Controller
         
         $this->runUpdateCommands();
 
-        if(Storage::exists($this->mainDir)){
-            Storage::delete($this->mainDir);
+        if(Storage::directoryExists($this->mainDir)){
+            Storage::deleteDirectory($this->mainDir);
         }
         return;
 
