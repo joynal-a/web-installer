@@ -121,7 +121,7 @@ class UpdateController extends Controller
 
         Artisan::call('migrate', ['--force' => true]);
         
-        $this->runAditionalCommands();
+        $this->runUpdateCommands();
 
         $dir = 'app/public/' . $this->mainDir;
         if(Storage::exists($dir)){

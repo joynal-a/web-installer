@@ -125,7 +125,7 @@ trait InstallationTrait
      * @return void
      * Note: This method is only for additonal commands.
      */
-    public function runAditionalCommands(): void
+    public function runInstallCommands(): void
     {
         $commands = config('installer.install_commands');
         foreach($commands as $command){
