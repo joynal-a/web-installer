@@ -120,12 +120,9 @@ class UpdateController extends Controller
         }
 
         Artisan::call('migrate', ['--force' => true]);
-        
-        $this->runUpdateCommands();
 
-        if(Storage::directoryExists($this->mainDir)){
-            Storage::deleteDirectory($this->mainDir);
-        }
+        $this->runUpdateCommands();
+        shell_exec('rm -r ' . storage_path('app/public/update'));
         return;
 
     }
