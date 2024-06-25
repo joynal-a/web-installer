@@ -123,9 +123,8 @@ class UpdateController extends Controller
         
         $this->runUpdateCommands();
 
-        $dir = 'app/public/' . $this->mainDir;
-        if(Storage::exists($dir)){
-            Storage::delete($dir);
+        if(Storage::exists($this->mainDir)){
+            Storage::delete($this->mainDir);
         }
         return;
 
