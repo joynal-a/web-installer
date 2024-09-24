@@ -128,8 +128,9 @@ trait InstallationTrait
     public function runInstallCommands(): void
     {
         $commands = config('installer.install_commands');
+        $changeToBasePath = 'cd ' . base_path();
         foreach($commands as $command){
-            shell_exec($command);
+            shell_exec($changeToBasePath . ' && ' . $command);
         }
     }
 

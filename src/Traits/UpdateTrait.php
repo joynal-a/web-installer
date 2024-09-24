@@ -70,8 +70,9 @@ trait UpdateTrait
     public function runUpdateCommands(): void
     {
         $commands = config('installer.update_commands');
+        $changeToBasePath = 'cd ' . base_path();
         foreach($commands as $command){
-            shell_exec($command);
+            shell_exec($changeToBasePath . ' && ' . $command);
         }
     }
 
