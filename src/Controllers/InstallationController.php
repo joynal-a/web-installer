@@ -100,7 +100,6 @@ class InstallationController extends Controller
     {
         // Ready for some commands run here
         try {
-            $this->getReadyToRun();
             $this->createInstalationFile();
             $this->runAditionalCommands();
         } catch (Exception $e) {

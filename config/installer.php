@@ -252,7 +252,10 @@ return [
     |--------------------------------------------------------------------------
     */
     'install_commands' => [
-        'composer update'
+        'composer update',
+        'php migrate:fresh --force',
+        'php artisan db:seed --force',
+        'php storage:link --force'
     ],
 
     /*
