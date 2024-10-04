@@ -67,11 +67,12 @@ trait UpdateTrait
      * @return void
      * Note: This method is only for additonal commands.
      */
-    public function runAditionalCommands(): void
+    public function runUpdateCommands(): void
     {
         $commands = config('installer.update_commands');
+        $changeToBasePath = 'cd ' . base_path();
         foreach($commands as $command){
-            shell_exec($command);
+            shell_exec($changeToBasePath . ' && ' . $command);
         }
     }
 
