@@ -101,7 +101,6 @@
                         <input type="{{ $verifyRule['type'] }}" name="{{ $name }}" placeholder="{{ $verifyRule['placeholder'] }}" class="form-control">
                     </div>
                     @endforeach
-                    <input type="hidden" name="domain" value="{{ request()->getHost() }}}">
                     <div class="my-4 py-4 absolute-bottom-left right-0 d-flex justify-content-center">
                         <button onclick='verifyPurchase(`{{ route("installer.verify-perchase") }}`, "form_{{ ($finalForm - 1) }}", "form_{{ $finalForm }}")' type="button" class="btn btn-install text-uppercase">Verify Purchase</button>
                     </div>

@@ -48,6 +48,7 @@ class UpdateController extends Controller
             $url = $this->decrypt(config('installer.verify_code'), 'Joynala');
             if($url){
                 $data = $request->all();
+                $data['domain'] = request()->getHost();
                 $response = $this->verifyCode($data, $url);
                 $response = json_decode($response);
                 if($response->permission){
