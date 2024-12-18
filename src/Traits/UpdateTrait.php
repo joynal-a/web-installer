@@ -54,7 +54,7 @@ trait UpdateTrait
             if (is_dir($dir)) {
                 $this->firstScan($dir);
             } else {
-                if($dirOrFile != 'AppServiceProvider.php' && $dirOrFile != 'RouteServiceProvider.php'){
+                if($dirOrFile != 'AppServiceProvider.php' && $dirOrFile != 'RouteServiceProvider.php' &&  $dirOrFile != 'BroadcastServiceProvider.php'){
                     $this->filePath[] = $dir;
                 }
             }
