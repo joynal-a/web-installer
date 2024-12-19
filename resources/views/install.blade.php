@@ -8,7 +8,7 @@
                 <img src="https://i.ibb.co/vzDRR5f/cog.gif" alt="cog" border="0">
             </div>
 
-            <h2 class="text-center mt-3">Ready For Instalation</h2>
+            <h2 class="text-center mt-3">Ready For Installation</h2>
             <p class="fs-7 text-center">
                 <strong class="text-danger">You will need to fill up the following mandatory items before proceeding.</strong>
             </p>
