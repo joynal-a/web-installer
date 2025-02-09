@@ -130,7 +130,7 @@
     </script>
 @endif
 <script>
-    const url = "/update-file"
+    const url = "/update/update-file"
 
     document.getElementById('upload').addEventListener('submit', function(event) {
         loader.style.display = 'flex'

@@ -208,8 +208,8 @@
 
 @push('scripts')
     <script>
-        const finalUrl = "/app-final-installation"
-        const csrfUrl = "/refresh-csrf-token"
+        const finalUrl = "/install/app-final-installation"
+        const csrfUrl = "/install/refresh-csrf-token"
         const purchaseEnable = "{{ config('installer.verify_purchase') }}"
         const lastForm = "{{ count($environmentFields) }}"
 
