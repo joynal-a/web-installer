@@ -130,7 +130,7 @@
     </script>
 @endif
 <script>
-    const url = "{{ route('updater.file-update') }}"
+    const url = "/update-file"
 
     document.getElementById('upload').addEventListener('submit', function(event) {
         loader.style.display = 'flex'
