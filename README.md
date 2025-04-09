@@ -46,9 +46,7 @@ php artisan vendor:publish --tag=web-installer-config
 3. In your `AppServiceProvider`, in the `boot` method, add:
 
 ```php
-try {
-    $_SERVER['argv'];
-} catch (Exception $e) {
+if(!$this->app->runningInConsole()){
     if (!file_exists(base_path('storage/installed')) && !request()->is('install') && !request()->is('install/*')) {
         header("Location: install");
         exit;
