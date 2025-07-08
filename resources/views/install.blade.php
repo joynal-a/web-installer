@@ -25,7 +25,7 @@
                                     <select name="{{ $name }}" class="form-control">
                                         <option value="">{{ $fields['placeholder'] }}</option>
                                         @foreach ($fields['option'] as $option)
-                                        <option value="{{ $option }}">{{ $option }}</option>
+                                        <option {{ isset($fields['value']) &&  $fields['value'] == $option ? 'selected':'' }} value="{{ $option }}">{{ $option }}</option>
                                         @endforeach
                                     </select>
                                 </div>
@@ -42,7 +42,7 @@
                         @else
                             <div class="mb-3">
                                 <label for="">{{ $fields['label'] }}@if (substr($fields['rule'], 0, 8) === 'required')<strong class="text-danger">*</strong>@endif</label>
-                                <input type="{{ $fields['type'] }}" name="{{ $name }}" placeholder="{{ $fields['placeholder'] }}" class="form-control">
+                                <input type="{{ $fields['type'] }}" name="{{ $name }}" value="{{ isset($fields['value']) ? $fields['value'] : '' }}" placeholder="{{ $fields['placeholder'] }}" class="form-control">
                             </div>
                         @endisset
                     @endforeach
