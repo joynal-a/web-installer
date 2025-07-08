@@ -101,19 +101,22 @@ return [
                 'label' => 'Database Connection',
                 'placeholder' => 'Select Databese',
                 'type' => 'select',
-                'option' => ['mysql', 'sqlite', 'pgsql', 'sqlsrv']
+                'option' => ['mysql', 'sqlite', 'pgsql', 'sqlsrv'],
+                'value' => 'mysql'
             ],
             'DB_HOST' => [
                 'rule' => 'required|string|max:50',
                 'label' => 'Database Host',
                 'type' => 'text',
-                'placeholder' => 'e.g: 127.0.0.1'
+                'placeholder' => 'e.g: 127.0.0.1',
+                'value' => '127.0.0.1'
             ],
             'DB_PORT' => [
                 'rule' => 'required|numeric',
                 'label' => 'Database Port',
                 'type' => 'number',
                 'placeholder' => 'e.g: 3306',
+                'value' => '3306'
             ],
             'DB_DATABASE' => [
                 'rule' => 'required|string|max:50',
@@ -224,12 +227,6 @@ return [
             'label' => 'Email',
             'type' => 'email',
             'placeholder' => 'e.g: example@email.com'
-        ],
-        'domain' => [
-            'rule' => 'required|string',
-            'label' => 'Domain Name',
-            'type' => 'text',
-            'placeholder' => 'e.g: https://example.com'
         ],
         'username' => [
             'rule' => 'required|string',

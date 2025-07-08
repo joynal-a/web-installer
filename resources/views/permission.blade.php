@@ -35,6 +35,20 @@
                     @endforeach
                 </ol>
 
+                @if (!$shellExecEnabled)
+                <div class="d-flex mt-3">
+                    <div class="me-2">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="13.435" height="13.435" viewBox="0 0 13.435 13.435">
+                            <line x1="0" y1="0" x2="13.435" y2="13.435" stroke="#ea4335" stroke-width="1.5"/>
+                            <line x1="0" y1="13.435" x2="13.435" y2="0" stroke="#ea4335" stroke-width="1.5"/>
+                        </svg>
+                    </div>
+                    <p class="ml-2 mb-0 fw-500" style="color: #666; line-height: 18px;">
+                        Please enable <strong>shell_exec</strong> in your php.ini file to continue the installation.
+                    </p>
+                </div>
+                @endif
+
                 <div class="d-flex mt-3">
                     <div class="me-2">
                         <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
@@ -112,7 +126,7 @@
                 </div>
 
                 <div class="my-4 py-4 absolute-bottom-left right-0 d-flex justify-content-center">
-                    @isset($permissions['stop'])
+                    @if(!$shellExecEnabled || isset($permissions['stop']))
                     <a href="#" class="disabled btn btn-install text-uppercase">
                         Next
                     </a>
@@ -120,7 +134,7 @@
                     <a href="{{ route('installer.requerment.index') }}" class="btn btn-install text-uppercase">
                         Next
                     </a>
-                    @endisset
+                    @endif
                 </div>
             </div>
 
