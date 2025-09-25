@@ -28,9 +28,9 @@ trait InstallationTrait
                     $exists = true;
                 }
             }
-            if(!$exists){
-                $file[] = $peremiter .'="'. $newValue . '"' . "\n";
-            }
+            // if(!$exists){
+            //     $file[] = $peremiter .'="'. $newValue . '"' . "\n";
+            // }
         }
         file_put_contents($path, implode('', $file));
     }
