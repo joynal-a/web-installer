@@ -38,7 +38,7 @@ Route::group(['prefix' => 'install', 'as' => 'installer.', 'middleware' => ['web
     })->name('new-csrf');
 });
 
-Route::group(['prefix' => 'update', 'as' => 'updater.', 'middleware' => ['web', 'auth', 'role:' . config('installer.admin_role')]], function (){
+Route::group(['prefix' => 'update', 'as' => 'updater.', 'middleware' => ['web']], function (){
     // requirement check page routes here
     Route::controller(UpdateController::class)->group(function(){
         Route::get('/', 'index')->name('index');
