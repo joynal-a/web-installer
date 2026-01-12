@@ -16,7 +16,7 @@ trait UpdateTrait
      * noted all files which ignored
      * @param array $ignoreFiles
      */
-    private $ignoreFiles = ['.', '..', '.DS_Store', '.gitignore', '.htaccess', 'favicon.ico', 'robots.txt', '.env', 'framework', 'storage'];
+    private $ignoreFiles = ['.', '..', '.DS_Store', '.gitignore', '.htaccess', 'favicon.ico', 'robots.txt', '.env', 'framework', 'logs', 'cache'];
 
     /**
      * name of dir which file uplod and divide

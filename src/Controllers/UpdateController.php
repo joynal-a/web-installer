@@ -79,29 +79,28 @@ class UpdateController extends Controller
 
     public function updateFile(Request $request)
     {
-        $request->validate(['zip' => 'required|mimes:zip']);
+                $request->validate(['zip' => 'required|mimes:zip']);
         $this->unzipAndStore();
         $filePaths = $this->getFilePath();
-
+        $data = 0;
         foreach($filePaths as $filePath){
             try{
                 if(file_exists(($filePath['mainDir']))){
                     $mainDir = file($filePath['mainDir']);
                     $updatDir = file($filePath['updateDir']);
-    
-                    // Iterate over the lines and compare
-                    $numLines = max(count($mainDir), count($updatDir));
-    
-                    for ($i = 0; $i < $numLines; $i++) {
-                        $line1 = isset($mainDir[$i]) ? rtrim($mainDir[$i]) : null;
-                        $line2 = isset($updatDir[$i]) ? rtrim($updatDir[$i]) : null;
-    
-                        // Check if lines are different
-                        if ($line1 !== $line2) {
-                            file_put_contents($filePath['mainDir'], implode('', $updatDir));
-                            break;
+
+                    if(count($mainDir) != count($updatDir)) {
+                        // Iterate over the lines and compare
+                        $numLines = max(count($mainDir), count($updatDir));
+                        for ($i = 0; $i < $numLines; $i++) {
+                            $line1 = isset($mainDir[$i]) ? rtrim($mainDir[$i]) : null;
+                            $line2 = isset($updatDir[$i]) ? rtrim($updatDir[$i]) : null;
+
+                            // Check if lines are different
+                            if ($line1 !== $line2) {
+                                file_put_contents($filePath['mainDir'], implode('', $updatDir));
+                            }
                         }
-    
                     }
                 }else{
                     $directories = explode('/', $filePath['dir']);
@@ -117,7 +116,6 @@ class UpdateController extends Controller
                     copy($filePath['updateDir'], $filePath['mainDir']);
                 }
             }catch(Exception $e){}
-            
         }
 
         Artisan::call('migrate', ['--force' => true]);
@@ -125,7 +123,6 @@ class UpdateController extends Controller
         $this->runUpdateCommands();
         shell_exec('rm -r ' . storage_path('app/public/update'));
         return;
-
     }
 }
 
