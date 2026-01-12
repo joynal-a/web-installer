@@ -89,17 +89,15 @@ class UpdateController extends Controller
                     $mainDir = file($filePath['mainDir']);
                     $updatDir = file($filePath['updateDir']);
 
-                    if(count($mainDir) != count($updatDir)) {
-                        // Iterate over the lines and compare
-                        $numLines = max(count($mainDir), count($updatDir));
-                        for ($i = 0; $i < $numLines; $i++) {
-                            $line1 = isset($mainDir[$i]) ? rtrim($mainDir[$i]) : null;
-                            $line2 = isset($updatDir[$i]) ? rtrim($updatDir[$i]) : null;
+                    // Iterate over the lines and compare
+                    $numLines = max(count($mainDir), count($updatDir));
+                    for ($i = 0; $i < $numLines; $i++) {
+                        $line1 = isset($mainDir[$i]) ? rtrim($mainDir[$i]) : null;
+                        $line2 = isset($updatDir[$i]) ? rtrim($updatDir[$i]) : null;
 
-                            // Check if lines are different
-                            if ($line1 !== $line2) {
-                                file_put_contents($filePath['mainDir'], implode('', $updatDir));
-                            }
+                        // Check if lines are different
+                        if ($line1 !== $line2) {
+                            file_put_contents($filePath['mainDir'], implode('', $updatDir));
                         }
                     }
                 }else{
