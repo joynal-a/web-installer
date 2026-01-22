@@ -9,9 +9,19 @@ class CheckHasConfigMiddleware
     public function handle($request, Closure $next)
     {
         $hasConfigFile = is_file(base_path('config/installer.php'));
-        if($hasConfigFile){
+        $isInstalled = is_file(public_path('installed'));
+
+        // If installed, block installer routes
+        if ($isInstalled) {
+            // Redirect to home or any other route you want after install
+            return redirect('/');
+        }
+
+        // If config exists, allow installer
+        if ($hasConfigFile) {
             return $next($request);
         }
+        // Otherwise, redirect to installer welcome
         return to_route('installer.welcome.index');
     }
 }
