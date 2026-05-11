@@ -96,10 +96,21 @@
                 <form method="post" id="form_{{ ($finalForm - 1) }}" style="display:none">
                     @foreach ($verifyRules as $name => $verifyRule)
                     <div class="mb-3">
-                        <label for="">{{ $verifyRule['label'] }}@if(substr($fields['rule'], 0, 8) === 'required')<strong class="text-danger">*</strong>@endif</label>
+                        <label for="">{{ $verifyRule['label'] }}@if(substr($verifyRule['rule'], 0, 8) === 'required')<strong class="text-danger">*</strong>@endif</label>
                         <input type="{{ $verifyRule['type'] }}" name="{{ $name }}" placeholder="{{ $verifyRule['placeholder'] }}" class="form-control">
                     </div>
                     @endforeach
+                    @if (config('installer.license_verification.collect_domain'))
+                        <div class="alert alert-light border small" role="alert">
+                            {{ config('installer.license_verification.consent_notice') }}
+                        </div>
+                        <div class="form-check mb-3">
+                            <input class="form-check-input" type="checkbox" value="1" name="license_domain_consent" id="license_domain_consent">
+                            <label class="form-check-label" for="license_domain_consent">
+                                {{ config('installer.license_verification.consent_label') }}
+                            </label>
+                        </div>
+                    @endif
                     <div class="my-4 py-4 absolute-bottom-left right-0 d-flex justify-content-center">
                         <button onclick='verifyPurchase(`{{ route("installer.verify-perchase") }}`, "form_{{ ($finalForm - 1) }}", "form_{{ $finalForm }}")' type="button" class="btn btn-install text-uppercase">Verify Purchase</button>
                     </div>

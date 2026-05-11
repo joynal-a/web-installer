@@ -5,6 +5,7 @@ namespace Abedin\WebInstaller\Providers;
 use Abedin\WebInstaller\Commands\VerifyCode;
 use Abedin\WebInstaller\Commands\MakeJson;
 use Abedin\WebInstaller\Middleware\CheckHasConfigMiddleware;
+use Abedin\WebInstaller\Middleware\RedirectIfNotInstalledMiddleware;
 use Illuminate\Support\ServiceProvider;
 
 class AppServiceProvider extends ServiceProvider
@@ -37,6 +38,7 @@ class AppServiceProvider extends ServiceProvider
     public function boot()
     {
         $this->app['router']->aliasMiddleware('config_check', CheckHasConfigMiddleware::class);
+        $this->app['router']->pushMiddlewareToGroup('web', RedirectIfNotInstalledMiddleware::class);
         $this->loadViewsFrom(self::PATH_VIEWS, 'joynala.web-installer');
 
         $this->publishes([

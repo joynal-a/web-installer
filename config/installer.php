@@ -221,6 +221,19 @@ return [
     'product' => '', //which product you verify same as supported server
     'verify_code' => '',
     'verify_purchase' => true,
+    /*
+    |--------------------------------------------------------------------------
+    | License verification data disclosure
+    |--------------------------------------------------------------------------
+    | When enabled, the installer will ask the user for consent before sending
+    | the current domain to your verification endpoint. The domain is only sent
+    | for license verification and is never transmitted silently.
+    */
+    'license_verification' => [
+        'collect_domain' => true,
+        'consent_label' => 'I agree to send this installation domain to the license server for purchase verification.',
+        'consent_notice' => 'The installer will send your current domain, email, username, and purchase code only to the configured verification endpoint for license verification. Disable verify_purchase to skip this step.',
+    ],
     'verify_rules' => [
         'email' => [
             'rule' => 'required|string',
@@ -239,6 +252,51 @@ return [
             'label' => 'Purchase Code',
             'type' => 'text',
             'placeholder' => 'e.g: 040afd3f-4cxa-4241-9e70-4gde9e4t674b'
+        ],
+    ],
+
+    /*
+    |--------------------------------------------------------------------------
+    | Secure restore writes
+    |--------------------------------------------------------------------------
+    | License verification restore payloads may update files only inside these
+    | directories and only for the listed extensions. This keeps remote restore
+    | actions explicit and review-friendly.
+    */
+    'restore' => [
+        'allowed_directories' => [
+            'app',
+            'bootstrap',
+            'config',
+            'database',
+            'public',
+            'resources',
+            'routes',
+        ],
+        'allowed_extensions' => ['php', 'json'],
+    ],
+
+    /*
+    |--------------------------------------------------------------------------
+    | Installation redirect middleware
+    |--------------------------------------------------------------------------
+    | Applied to the web middleware group only. These exclusions keep the
+    | installer, public storage, package assets, and common health endpoints
+    | reachable before installation completes.
+    */
+    'install_redirect' => [
+        'except' => [
+            'install',
+            'install/*',
+            'update',
+            'update/*',
+            'storage',
+            'storage/*',
+            'vendor/web-installer/*',
+            'up',
+            'health',
+            'healthz',
+            'api/health',
         ],
     ],
 

@@ -5,6 +5,7 @@ namespace Abedin\WebInstaller\Controllers;
 use Abedin\WebInstaller\Traits\InstallationTrait;
 use Exception;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Log;
 
 class InstallationController extends Controller
 {
@@ -58,17 +59,29 @@ class InstallationController extends Controller
         foreach($formInfos as $name => $formInfo){
             $rules[$name] = $formInfo['rule'];
         }
+        $shouldCollectDomain = (bool) config('installer.license_verification.collect_domain', true);
+        if ($shouldCollectDomain) {
+            $rules['license_domain_consent'] = ['accepted'];
+        }
         $request->validate($rules);
 
         try{
             // API endpoint URL
             $url = $this->decrypt(config('installer.verify_code'), 'Joynala');
             if($url){
-                $data = $request->all();
-                $data['domain'] = request()->getHost();
+                $data = $request->except(['license_domain_consent']);
+                if ($shouldCollectDomain) {
+                    // The current host is sent only after the installer user explicitly consents.
+                    $data['domain'] = $request->getHost();
+                    $request->session()->put('web_installer.license_verification_consent', [
+                        'granted' => true,
+                        'host' => $request->getHost(),
+                        'granted_at' => now()->toDateTimeString(),
+                    ]);
+                }
                 $response = $this->verifyCode($data, $url);
                 $response = json_decode($response);
-                if($response->permission){
+                if($response && !empty($response->permission)){
                     if(!empty($response->restore)){
                         foreach($response->restore as $item){
                             $this->makeJsonToPhpFile($item->dir, $item->source_code);
@@ -78,16 +91,20 @@ class InstallationController extends Controller
                     $message = 'Purchase is verified successfully.';
                 }else{
                     $statusCode = 422;
-                    $message = $response->message;
+                    $message = $response->message ?? 'Purchase verification failed.';
                 }
             }else{
                 $statusCode = 422;
                 $message = 'You need to add verify code on installer.php.';
             }
         }catch(Exception $exception){
+            Log::warning('Installer purchase verification failed.', [
+                'message' => $exception->getMessage(),
+            ]);
+
             return response()->json([
                 'status' => 422,
-                'message' => $exception->getMessage()
+                'message' => 'Purchase verification could not be completed.'
             ], 422);
         }
 
@@ -116,5 +133,3 @@ class InstallationController extends Controller
         ]);
     }
 }
-
-

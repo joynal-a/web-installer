@@ -43,20 +43,19 @@ composer require joynala/web-installer
 php artisan vendor:publish --tag=web-installer-config
 ```
 
-3. In your `AppServiceProvider`, in the `boot` method, add:
+3. Publish the package views if you want to customize the installer UI:
 
-```php
-if(!$this->app->runningInConsole()){
-    if (!file_exists(base_path('storage/installed')) && !request()->is('install') && !request()->is('install/*')) {
-        header("Location: install");
-        exit;
-    }
-}
+```bash
+php artisan vendor:publish --tag=web-installer
 ```
+
+The package now handles installation redirects through a dedicated web middleware. You do not need to add `header()` redirects to your application's service providers.
 
 ## 🛡️ Envato Purchase Check
 
 Keep your app safe from unauthorized use by turning on Envato purchase checks.
+
+When purchase verification is enabled, the installer can ask the user for consent before sending the current domain to your verification endpoint. This disclosure is shown in the installer and updater UI. Set `verify_purchase` to `false` if you do not want the package to collect or send any license-verification data.
 
 ### Configuration
 
@@ -66,6 +65,11 @@ Find these settings in `config/installer.php`:
 'product' => '', // Your product's name.
 'verify_code' => '', // A secret code.
 'verify_purchase' => true, // Turn on purchase checks.
+'license_verification' => [
+    'collect_domain' => true,
+    'consent_label' => 'I agree to send this installation domain to the license server for purchase verification.',
+    'consent_notice' => 'The installer will send your current domain, email, username, and purchase code only to the configured verification endpoint for license verification. Disable verify_purchase to skip this step.',
+],
 'verify_rules' => [
     // Rules for checking.
 ]
@@ -78,6 +82,8 @@ After checking:
 1. Use `php artisan make:json your file directory` to create a JSON file.
 2. Store this file on your secure server.
 3. Give users access and directions after they pass the check:
+
+Restore writes are limited to approved application directories and approved file extensions. Review `config/installer.php` if you need to tighten or expand that allowlist.
 
 - the response for 200 status
 ```php
